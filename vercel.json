@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "name": "faithwall",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    },
+    {
+      "src": "api/welcome.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/faithwall-10-verses-printable.pdf",
+      "dest": "/faithwall-10-verses-printable.pdf"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "RESEND_API_KEY": "@resend_api_key"
+  }
+}
