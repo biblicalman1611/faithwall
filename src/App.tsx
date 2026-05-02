@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Shield, BookOpen, Users, TrendingDown, TrendingUp,
   Flame, Check, Menu, XIcon, ChevronDown, Lock,
@@ -563,12 +563,6 @@ function Footer() {
 
 /* ───────── main landing page ───────── */
 function LandingPage() {
-  const leadMagnetRef = useRef<HTMLDivElement>(null);
-
-  const handleGetPrintable = () => {
-    leadMagnetRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -579,10 +573,8 @@ function LandingPage() {
       <FamilySection />
       <Testimonials />
       <SupportMission />
-      <PricingSection onGetPrintable={handleGetPrintable} />
-      <div ref={leadMagnetRef}>
-        <LeadMagnet />
-      </div>
+      <PricingSection />
+      <LeadMagnet />
       <FAQ />
       <Footer />
     </div>

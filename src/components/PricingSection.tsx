@@ -1,14 +1,12 @@
 import {
-  Check, X, Infinity, Lock, Users,
+  Check, Infinity, Lock, Users,
   Shield, Zap, ChevronDown
 } from 'lucide-react';
 import { useState } from 'react';
 import { PAYMENT_LINKS } from '../config/stripe';
 
 
-interface PricingSectionProps {
-  onGetPrintable: () => void;
-}
+interface PricingSectionProps {}
 
 function FeatureItem({ children, bold }: { children: React.ReactNode; bold?: boolean }) {
   return (
@@ -48,7 +46,7 @@ function MiniFAQ() {
   );
 }
 
-export default function PricingSection({ onGetPrintable }: PricingSectionProps) {
+export default function PricingSection(_: PricingSectionProps) {
   const [loading, setLoading] = useState<'individual' | 'family' | 'lifetime' | null>(null);
 
   const handleCheckout = (_priceId: string, type: 'individual' | 'family' | 'lifetime') => {
@@ -71,47 +69,10 @@ export default function PricingSection({ onGetPrintable }: PricingSectionProps) 
           Choose Your Wall
         </h2>
         <p className="text-center text-white/80 mb-12">
-          Free forever to start. Upgrade when you are ready.
+          Annual subscription. Cancel anytime. Lock in your Founding Family rate forever.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* STARTER */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg">
-            <div className="text-xs font-bold text-[#8C7B6B] uppercase tracking-wider mb-2">Starter</div>
-            <div className="text-4xl font-bold text-[#3D2B1F] mb-1">$0</div>
-            <div className="text-sm text-[#8C7B6B] mb-4">Get started</div>
-            <div className="inline-block bg-[#E8E0D4] text-[#5C4D3C] text-xs font-bold px-3 py-1 rounded-full mb-4">
-              STARTER
-            </div>
-            <ul className="space-y-1 mb-6">
-              <FeatureItem>3 Wall Modes</FeatureItem>
-              <FeatureItem>Daily Verse of the Day</FeatureItem>
-              <FeatureItem>Basic screen time tracking</FeatureItem>
-              <FeatureItem>Basic wall progress</FeatureItem>
-              <FeatureItem>3 emergency unlocks/month</FeatureItem>
-              <FeatureItem>KJV & WEB translations</FeatureItem>
-              <FeatureItem>Solo only</FeatureItem>
-              <li className="flex items-start gap-2 text-sm py-1 text-[#C4BFB5]">
-                <X className="w-4 h-4 mt-0.5 shrink-0" />
-                <span>Family sharing</span>
-              </li>
-              <li className="flex items-start gap-2 text-sm py-1 text-[#C4BFB5]">
-                <X className="w-4 h-4 mt-0.5 shrink-0" />
-                <span>Advanced stats</span>
-              </li>
-              <li className="flex items-start gap-2 text-sm py-1 text-[#5C4D3C]">
-                <Check className="w-4 h-4 mt-0.5 shrink-0 text-green-600" />
-                <span>Core features available at launch</span>
-              </li>
-            </ul>
-            <button
-              onClick={onGetPrintable}
-              className="w-full py-3 border-2 border-[#C4453A] text-[#C4453A] font-bold rounded-xl hover:bg-[#C4453A]/5 transition-colors"
-            >
-              Get the Printable
-            </button>
-          </div>
-
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {/* INDIVIDUAL — HIGHLIGHTED */}
           <div className="bg-white rounded-2xl p-6 shadow-2xl border-2 border-[#D4A843] relative transform md:-translate-y-2">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#D4A843] to-[#A67C2E] text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg">
@@ -204,7 +165,7 @@ export default function PricingSection({ onGetPrintable }: PricingSectionProps) 
         {/* Trust bar */}
         <div className="flex flex-wrap justify-center gap-6 mt-8 text-xs text-white/80">
           <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> Secure Stripe payment</span>
-          <span className="flex items-center gap-1"><Check className="w-3 h-3" /> 30-day money-back guarantee</span>
+          <span className="flex items-center gap-1"><Check className="w-3 h-3" /> All sales final</span>
           <span className="flex items-center gap-1"><Infinity className="w-3 h-3" /> Annual subscription, cancel anytime</span>
         </div>
 

@@ -62,7 +62,7 @@ export default async function handler(req, res) {
               <h2 style="margin:0 0 16px;color:#3D2B1F;font-size:22px;font-family:Georgia,serif;">Your printable is ready</h2>
               <p style="margin:0 0 20px;color:#5C4D3C;font-size:15px;line-height:1.7;">
                 Hi there,<br><br>
-                Thank you for requesting <em>10 Verses for Screen-Free Family Time</em>. This is a beautifully designed KJV devotional you can print at home and put on your fridge, homeschool table, or nightstand.
+                Thank you for requesting <em>10 Verses for Screen-Free Family Time</em>. This is a beautifully designed KJV devotional you can print at home and put on your refrigerator, homeschool table, or nightstand.
               </p>
               <!-- CTA -->
               <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:28px 0;">
@@ -80,7 +80,7 @@ export default async function handler(req, res) {
                 <tr>
                   <td style="padding:20px 24px;">
                     <p style="margin:0;color:#3D2B1F;font-size:14px;line-height:1.7;">
-                      <strong>FaithWall launches soon.</strong> While you're building your wall with these verses, we're putting the final bricks in place. Become a <strong>Founding Family</strong> and get lifetime access for just <strong>$29.99</strong> (individual) or <strong>$39.99</strong> (whole family). No subscriptions. Ever.<br><br>
+                      <strong>FaithWall launches soon.</strong> While you're building your wall with these verses, we're putting the final bricks in place. Become a <strong>Founding Family</strong> with an annual subscription: <strong>$29.99/yr</strong> (individual) or <strong>$39.99/yr</strong> (household). Cancel anytime. Prefer lifetime? <strong>$199 one-time</strong>.<br><br>
                       <a href="https://faithwall.deadhidden.org/#pricing" style="color:#C4453A;font-weight:bold;">Learn more about Founding Family pricing →</a>
                     </p>
                   </td>
@@ -112,15 +112,16 @@ Hi there,
 Thank you for requesting 10 Verses for Screen-Free Family Time. Download your printable here:
 https://faithwall.deadhidden.org/faithwall-10-verses-printable.pdf
 
-Each page includes a handpicked KJV verse with a reflection prompt designed to help your family choose Scripture over scrolling. Print it, put it on your fridge or homeschool table, and build your wall — one verse at a time.
+Each page includes a handpicked KJV verse with a reflection prompt designed to help your family choose Scripture over scrolling. Print it, put it on your refrigerator or homeschool table, and build your wall — one verse at a time.
 
 FAITHWALL LAUNCHES SOON
 While you're building your wall with these verses, FaithWall is almost ready. Lock in Founding Family pricing:
-- Individual: $29.99 (lifetime)
-- Family (up to 10): $39.99 (lifetime)
+- Individual: $29.99/yr (annual subscription)
+- Household: $39.99/yr (annual subscription, up to 10)
+- Lifetime: $199 one-time (optional)
 https://faithwall.deadhidden.org/#pricing
 
-No subscriptions. No monthly fees. Pay once, build your wall forever.
+Annual subscription. Cancel anytime. All sales final.
 
 "So built we the wall... for the people had a mind to work." — Nehemiah 4:6
 
