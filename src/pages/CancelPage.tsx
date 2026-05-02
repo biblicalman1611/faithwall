@@ -20,7 +20,7 @@ export default function CancelPage({ onGetPrintable, onBackToPricing }: CancelPa
           No worries — grace abounds.
         </h1>
         <p className="text-[#8C7B6B] mb-8">
-          You can still get the free printable or come back and buy anytime. The Founding Family pricing is here when you are ready.
+          You can still get the printable or come back and buy anytime. The Founding Family pricing is here when you are ready.
         </p>
 
         <div className="flex flex-col gap-3">
@@ -32,7 +32,7 @@ export default function CancelPage({ onGetPrintable, onBackToPricing }: CancelPa
             className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-[#C4453A] to-[#A63830] text-white font-bold rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all"
           >
             <Gift className="w-5 h-5" />
-            Get the Free Printable
+            Get the Printable
           </button>
           <button
             onClick={() => {

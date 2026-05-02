@@ -4,7 +4,7 @@ import { Check, Copy, Facebook, Mail } from 'lucide-react';
 export default function ThanksPage() {
   const [copied, setCopied] = useState(false);
   const shareUrl = 'https://faithwall.deadhidden.org';
-  const shareText = 'I just got the free "10 Verses for Screen-Free Family Time" printable from FaithWall! Beautiful KJV devotional you can print at home. Get yours:';
+  const shareText = 'I just got the "10 Verses for Screen-Free Family Time" printable from FaithWall! Beautiful KJV devotional you can print at home. Get yours:';
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
@@ -18,7 +18,7 @@ export default function ThanksPage() {
   };
 
   const handleShareEmail = () => {
-    const subject = 'Free printable: 10 Verses for Screen-Free Family Time';
+    const subject = 'Printable: 10 Verses for Screen-Free Family Time';
     const body = `${shareText}\n\n${shareUrl}`;
     window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
@@ -49,7 +49,7 @@ export default function ThanksPage() {
         {/* Launch notice */}
         <div className="bg-white rounded-2xl shadow-sm border border-[#E8E0D4] p-4 mb-8 mt-6">
           <p className="text-sm text-[#5C4D3C]">
-            FaithWall launches soon. You&apos;ll be the first to know.
+            FaithWall is live now in your browser. Full app access coming to your inbox.
           </p>
         </div>
 

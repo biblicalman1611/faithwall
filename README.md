@@ -91,13 +91,24 @@ faithwall-export/
 
 ---
 
-## Environment Variables Needed
+## Environment Variables
 
 | Variable | Value | Where |
 |----------|-------|-------|
-| `RESEND_API_KEY` | `re_xxxxxxxx` | Vercel dashboard → Project → Settings → Environment Variables |
+| `RESEND_API_KEY` | `re_iAbtYfPk_8xJWkrCEEmi5uwxGswh3QqPY` | Already set in `.env.local` — add to Vercel dashboard |
 
-Stripe keys are already hardcoded in `src/config/stripe.ts` (publishable key + price IDs) — no env var needed for the frontend checkout.
+### Setting in Vercel:
+1. Vercel dashboard → Project → Settings → Environment Variables
+2. Add: `RESEND_API_KEY` = `re_iAbtYfPk_8xJWkrCEEmi5uwxGswh3QqPY`
+3. Save → Redeploy
+
+### Already configured in the repo:
+- `.env.local` — has the Resend key for local development
+- `.env.example` — template showing the key format
+- `.gitignore` — `.env.local` and `.env` are gitignored (key won't leak)
+
+### Stripe keys:
+Already hardcoded in `src/config/stripe.ts` (publishable key only, safe for frontend). No backend env var needed.
 
 ---
 

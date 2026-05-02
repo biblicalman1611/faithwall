@@ -3,7 +3,7 @@ import {
   Shield, Zap, ChevronDown
 } from 'lucide-react';
 import { useState } from 'react';
-import { STRIPE_PUBLISHABLE_KEY, PRICE_INDIVIDUAL, PRICE_FAMILY } from '../config/stripe';
+import { STRIPE_PUBLISHABLE_KEY, PRICE_INDIVIDUAL, PRICE_FAMILY, PRICE_LIFETIME } from '../config/stripe';
 
 
 interface PricingSectionProps {
@@ -22,9 +22,9 @@ function FeatureItem({ children, bold }: { children: React.ReactNode; bold?: boo
 function MiniFAQ() {
   const [open, setOpen] = useState<number | null>(null);
   const items = [
-    { q: 'Why is launch pricing so cheap?', a: 'Founding Families help us fund development and shape the app. Full price at launch will be $59.99+.' },
-    { q: 'What happens after I pay?', a: "You'll get download instructions via email when FaithWall launches. Plus your free printable right away." },
-    { q: 'Can I upgrade later?', a: 'Yes, but at full launch price. $29.99/$39.99 is only for Founding Families.' },
+    { q: 'Why is Founding Family pricing so cheap?', a: 'Founding Families lock in annual pricing at half the regular rate. $29.99/yr now vs $59.99/yr later.' },
+    { q: 'What happens after I pay?', a: "You'll receive immediate access to the FaithWall web app. Your annual subscription renews automatically each year at your locked-in Founding Family rate. Cancel anytime." },
+    { q: 'Can I upgrade to lifetime?', a: 'Yes. Anytime from your account settings. $199 one-time. Never pay again.' },
   ];
   return (
     <div className="max-w-lg mx-auto mt-8 space-y-2">
@@ -49,13 +49,16 @@ function MiniFAQ() {
 }
 
 export default function PricingSection({ onGetPrintable }: PricingSectionProps) {
-  const [loading, setLoading] = useState<'individual' | 'family' | null>(null);
+  const [loading, setLoading] = useState<'individual' | 'family' | 'lifetime' | null>(null);
 
-  const handleCheckout = async (priceId: string, type: 'individual' | 'family') => {
+  const handleCheckout = async (priceId: string, type: 'individual' | 'family' | 'lifetime') => {
     if (STRIPE_PUBLISHABLE_KEY.includes('REPLACE')) {
       alert('Stripe needs to be configured. Add your Stripe keys in src/config/stripe.ts — takes 2 minutes!');
       return;
     }
+
+    // NOTE: For MVP, using one-time payment mode.
+    // True annual subscription billing will be implemented via Stripe Billing in Phase 2.
 
     setLoading(type);
     try {
@@ -103,13 +106,13 @@ export default function PricingSection({ onGetPrintable }: PricingSectionProps) 
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* FREE */}
+          {/* STARTER */}
           <div className="bg-white rounded-2xl p-6 shadow-lg">
-            <div className="text-xs font-bold text-[#8C7B6B] uppercase tracking-wider mb-2">Free</div>
+            <div className="text-xs font-bold text-[#8C7B6B] uppercase tracking-wider mb-2">Starter</div>
             <div className="text-4xl font-bold text-[#3D2B1F] mb-1">$0</div>
-            <div className="text-sm text-[#8C7B6B] mb-4">Forever</div>
+            <div className="text-sm text-[#8C7B6B] mb-4">Get started</div>
             <div className="inline-block bg-[#E8E0D4] text-[#5C4D3C] text-xs font-bold px-3 py-1 rounded-full mb-4">
-              COMING SOON
+              STARTER
             </div>
             <ul className="space-y-1 mb-6">
               <FeatureItem>3 Wall Modes</FeatureItem>
@@ -136,23 +139,23 @@ export default function PricingSection({ onGetPrintable }: PricingSectionProps) 
               onClick={onGetPrintable}
               className="w-full py-3 border-2 border-[#C4453A] text-[#C4453A] font-bold rounded-xl hover:bg-[#C4453A]/5 transition-colors"
             >
-              Get the Free Printable
+              Get the Printable
             </button>
           </div>
 
           {/* INDIVIDUAL — HIGHLIGHTED */}
           <div className="bg-white rounded-2xl p-6 shadow-2xl border-2 border-[#D4A843] relative transform md:-translate-y-2">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#D4A843] to-[#A67C2E] text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg">
-              50% OFF — LAUNCH PRICE
+              50% OFF — FOUNDING FAMILY
             </div>
             <div className="text-xs font-bold text-[#8C7B6B] uppercase tracking-wider mb-2">Founding Family</div>
             <div className="flex items-baseline gap-2 mb-1">
-              <span className="text-4xl font-bold text-[#3D2B1F]">$29.99</span>
-              <span className="text-lg text-[#C4BFB5] line-through">$59.99</span>
+              <span className="text-4xl font-bold text-[#3D2B1F]">$29.99/yr</span>
+              <span className="text-lg text-[#C4BFB5] line-through">$59.99/yr</span>
             </div>
-            <div className="text-sm text-[#8C7B6B] mb-3">One-time. Lifetime access.</div>
+            <div className="text-sm text-[#8C7B6B] mb-3">Annual subscription. Cancel anytime.</div>
             <div className="text-xs text-[#C4453A] font-semibold mb-4">
-              Founding Family pricing — limited spots
+              Lock in this price forever
             </div>
             <ul className="space-y-1 mb-6">
               <FeatureItem bold>Everything in Free</FeatureItem>
@@ -162,15 +165,15 @@ export default function PricingSection({ onGetPrintable }: PricingSectionProps) 
               <FeatureItem>Advanced wall analytics</FeatureItem>
               <FeatureItem><Lock className="w-3.5 h-3.5 inline mr-1" />10 emergency unlocks/month</FeatureItem>
               <FeatureItem>All translations (KJV, WEB, BSB)</FeatureItem>
-              <FeatureItem>Lifetime updates — forever</FeatureItem>
-              <FeatureItem>Founding Family badge</FeatureItem>
+              <FeatureItem>All updates included</FeatureItem>
+              <FeatureItem>Founding Family status</FeatureItem>
             </ul>
             <button
               onClick={() => handleCheckout(PRICE_INDIVIDUAL, 'individual')}
               disabled={loading === 'individual'}
               className="w-full py-4 bg-gradient-to-r from-[#C4453A] to-[#A63830] text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50"
             >
-              {loading === 'individual' ? 'Loading...' : 'Buy Now — $29.99'}
+              {loading === 'individual' ? 'Loading...' : 'Subscribe — $29.99/yr'}
             </button>
           </div>
 
@@ -178,15 +181,15 @@ export default function PricingSection({ onGetPrintable }: PricingSectionProps) 
           <div className="bg-white rounded-2xl p-6 shadow-lg border-2 border-[#C4453A]">
             <div className="text-xs font-bold text-[#8C7B6B] uppercase tracking-wider mb-2">Household</div>
             <div className="flex items-baseline gap-2 mb-1">
-              <span className="text-4xl font-bold text-[#3D2B1F]">$39.99</span>
-              <span className="text-lg text-[#C4BFB5] line-through">$79.99</span>
+              <span className="text-4xl font-bold text-[#3D2B1F]">$39.99/yr</span>
+              <span className="text-lg text-[#C4BFB5] line-through">$79.99/yr</span>
             </div>
-            <div className="text-sm text-[#8C7B6B] mb-3">One-time. Whole family.</div>
+            <div className="text-sm text-[#8C7B6B] mb-3">Annual subscription. Whole family.</div>
             <div className="inline-block bg-[#C4453A] text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
               BEST VALUE
             </div>
             <div className="text-xs text-[#C4453A] font-semibold mb-4">
-              Best value for families
+              Lock in this price forever
             </div>
             <ul className="space-y-1 mb-6">
               <FeatureItem bold>Everything in Individual</FeatureItem>
@@ -195,6 +198,8 @@ export default function PricingSection({ onGetPrintable }: PricingSectionProps) 
               <FeatureItem>Shared family modes</FeatureItem>
               <FeatureItem><Shield className="w-3.5 h-3.5 inline mr-1" />Parent dashboard</FeatureItem>
               <FeatureItem><Zap className="w-3.5 h-3.5 inline mr-1" />Unlimited emergency unlocks</FeatureItem>
+              <FeatureItem>All updates included</FeatureItem>
+              <FeatureItem>Founding Family status</FeatureItem>
               <FeatureItem>Priority support</FeatureItem>
             </ul>
             <button
@@ -202,8 +207,28 @@ export default function PricingSection({ onGetPrintable }: PricingSectionProps) 
               disabled={loading === 'family'}
               className="w-full py-4 bg-gradient-to-r from-[#C4453A] to-[#A63830] text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50"
             >
-              {loading === 'family' ? 'Loading...' : 'Buy Now — $39.99'}
+              {loading === 'family' ? 'Loading...' : 'Subscribe — $39.99/yr'}
             </button>
+          </div>
+        </div>
+
+        {/* Lifetime callout */}
+        <div className="max-w-md mx-auto mt-8">
+          <div className="bg-white/10 backdrop-blur rounded-2xl p-6 text-center border border-white/20">
+            <div className="text-sm font-bold text-white/90 uppercase tracking-wider mb-2">Lifetime Access</div>
+            <p className="text-white mb-4">
+              Want lifetime access? <span className="font-bold text-[#D4A843]">$199</span> one-time. Never pay again.
+            </p>
+            <button
+              onClick={() => handleCheckout(PRICE_LIFETIME, 'lifetime')}
+              disabled={loading === 'lifetime'}
+              className="px-6 py-3 bg-white text-[#C4453A] font-bold rounded-xl hover:bg-white/90 transition-all disabled:opacity-50 text-sm"
+            >
+              {loading === 'lifetime' ? 'Loading...' : 'Get Lifetime — $199'}
+            </button>
+            <p className="text-xs text-white/60 mt-3">
+              Upgrade anytime from your annual plan.
+            </p>
           </div>
         </div>
 
@@ -211,7 +236,7 @@ export default function PricingSection({ onGetPrintable }: PricingSectionProps) 
         <div className="flex flex-wrap justify-center gap-6 mt-8 text-xs text-white/80">
           <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> Secure Stripe payment</span>
           <span className="flex items-center gap-1"><Check className="w-3 h-3" /> 30-day money-back guarantee</span>
-          <span className="flex items-center gap-1"><Infinity className="w-3 h-3" /> Lifetime access, no subscriptions</span>
+          <span className="flex items-center gap-1"><Infinity className="w-3 h-3" /> Annual subscription, cancel anytime</span>
         </div>
 
         <MiniFAQ />

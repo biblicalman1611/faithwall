@@ -1,7 +1,11 @@
 node_modules
 dist
 .DS_Store
-*.local
-.vercel
-.env
+
+# Environment variables
 .env.local
+.env
+
+# Logs
+*.log
+.vercel

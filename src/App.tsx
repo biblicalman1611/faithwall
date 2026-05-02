@@ -25,16 +25,16 @@ const FAQS = [
   { q: 'Will this slow down my phone?', a: 'No. FaithWall doesn\'t run in the background constantly. It activates only when you start a Wall Mode. When inactive, it uses virtually zero battery or processing power.' },
   { q: 'Does it work offline?', a: 'Yes! The core Bible content (KJV and WEB translations) is stored on your device. You can wall your phone, read verses, and track progress even without internet. Screen time sync happens when you\'re back online.' },
   { q: 'What if I need to make an emergency call?', a: 'Emergency calls (911) always work, even when your phone is walled. Phone, Messages, and Maps can be set as "always allowed" apps in your mode settings.' },
-  { q: 'What Bible translations are available?', a: 'Free tier: King James Version (KJV) and World English Bible (WEB) — both public domain. Premium: adds Berean Standard Bible (BSB). You can also open any verse in YouVersion for NIV, ESV, NKJV, and 2,000+ other translations.' },
+  { q: 'What Bible translations are available?', a: 'Starter tier: King James Version (KJV) and World English Bible (WEB) — both public domain. Premium: adds Berean Standard Bible (BSB). You can also open any verse in YouVersion for NIV, ESV, NKJV, and 2,000+ other translations.' },
   { q: 'Are the verses random or themed?', a: 'Both! Your daily verse is themed (Family, Peace, Strength, Homeschool, etc.). Quick unlock uses verses from your chosen theme pack. You can also set favorites or add custom verses.' },
   { q: 'Do I have to be a Christian to use this?', a: 'Not at all. FaithWall works for anyone who wants to reduce screen time through meaningful reflection. The Scripture content is there if you want it, but the app blocking and focus tools work regardless.' },
   { q: 'Can I set this up on my kids\' phones?', a: 'Yes! With a Family plan, you can invite up to 10 family members. Each person gets their own wall, but you can see family progress on the parent dashboard. Kids 8+ can use FaithWall with parent setup.' },
   { q: 'Can I control my kids\' walls from my phone?', a: 'Yes. The parent dashboard lets you see each family member\'s active mode, wall count, and screen time. You can also start a "Family Wall Mode" that applies to everyone\'s phone at once — perfect for dinner time or homeschool hours.' },
   { q: 'Won\'t my teenager just uninstall it?', a: 'We have layered protection. On iOS, Family Sharing prevents app removal without parent approval. On Android, Device Admin mode requires a password to uninstall. But honestly? The best protection is conversation. When teens see YOU building your wall, they\'re more likely to build theirs.' },
-  { q: 'What do I get when I buy FaithWall?', a: 'You get lifetime access to the full app — unlimited Wall Modes, all 30+ verse packs, screen time reports, family sharing, and every future update we release. Pay once, keep forever. No subscriptions, no renewal fees.' },
+  { q: 'What do I get when I buy FaithWall?', a: "You get a full year of FaithWall — unlimited Wall Modes, all 30+ verse packs, screen time reports, family sharing, and every update we release during your subscription. Your Founding Family rate is locked in: pay $29.99/yr now, and that's your rate forever, even when regular price goes up." },
   { q: 'Is this a subscription?', a: 'No. FaithWall is a one-time purchase. $29.99 for individual lifetime access or $39.99 for your whole family. We will never ask you for a monthly fee. Pay once, build your wall forever.' },
-  { q: 'What happens after I buy?', a: "You\'ll get download instructions via email as soon as FaithWall is available on the App Store and Google Play (launching soon). Your Founding Family purchase also includes all future updates and new verse packs at no extra cost." },
-  { q: 'When will the app be available?', a: 'FaithWall is launching soon on iOS and Android. When you purchase now as a Founding Family member, you\'ll be first in line for download access the moment we go live. We\'re putting the final bricks in place.' },
+  { q: 'What happens after I buy?', a: "You\'ll receive download instructions via email immediately after purchase. Your Founding Family membership includes all current and future features." },
+  { q: 'Can I use FaithWall right away?', a: 'Yes. The web app works immediately in your browser. iOS and Android apps are rolling out to Founding Family members first.' },
   { q: 'Where does the screen time data come from?', a: 'iPhone: Apple\'s Screen Time API (built into iOS). Android: Android\'s Digital Wellbeing system. We show you the same data your phone already tracks — just organized to highlight your Scripture time vs. scrolling time.' },
   { q: 'Isn\'t this just replacing one addiction with another?', a: 'That\'s a fair question. The difference is intentionality. Doomscrolling is passive and endless — you lose track of time. Reading Scripture is active and time-bounded — 90 seconds, then you choose what to do next. Research shows that even brief moments of reflection reduce impulsive phone use over time.' },
   { q: 'What if I just read the verse quickly without thinking?', a: 'We\'ve all been there. That\'s why FaithWall has multiple task types — you can choose to type the verse from memory, write a prayer, or answer a reflection question. The goal isn\'t speed; it\'s presence. Even 90 seconds of intentional focus changes your brain\'s response to the scroll.' },
@@ -105,24 +105,24 @@ function Hero() {
           className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#3D2B1F] leading-tight mb-5"
           style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
         >
-          Your kids see you on your phone.{" "}
-          <span className="text-[#C4453A]">What if they saw you in the Word first?</span>
+          Your kids see you on your phone—but{" "}
+          <span className="text-[#C4453A]">what if they saw you in the Word first?</span>
         </h1>
         <p className="text-lg text-[#8C7B6B] max-w-xl mx-auto mb-8">
-          FaithWall locks distracting apps until you spend a moment with Scripture. Built for Christian families who want presence over scrolling. Launching soon — become a Founding Family today.
+          FaithWall locks distracting apps until you spend quality time with Scripture. Built for Christian families who want presence over scrolling. Become a Founding Family today.
         </p>
         <div className="flex flex-wrap gap-4 justify-center mb-10">
           <button
             onClick={() => scrollTo('pricing')}
             className="px-8 py-4 bg-gradient-to-r from-[#C4453A] to-[#A63830] text-white font-bold rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all text-lg"
           >
-            Get FaithWall — $29.99
+            Get FaithWall — $29.99/yr
           </button>
           <button
             onClick={() => scrollTo('lead-magnet')}
             className="px-8 py-4 bg-white border-2 border-[#C4453A] text-[#C4453A] font-bold rounded-2xl hover:bg-[#C4453A]/5 transition-colors text-lg"
           >
-            Get the Free Printable First
+            Get the Printable First
           </button>
         </div>
 
@@ -425,8 +425,8 @@ function SupportMission() {
           <br/><span className="text-sm not-italic font-bold">— Nehemiah 4:6</span>
         </p>
         <p className="text-[#8C7B6B] text-sm mb-8">
-          Every dollar goes directly into development — iOS and Android apps, family sharing, 
-          more verse packs, and making sure this tool reaches every Christian family that needs it.
+          Every gift goes directly into development — iOS and Android apps, family sharing, 
+          more verse packs, and making sure this tool reaches every Christian family that needs it. Purchases support the ongoing mission too.
         </p>
         <a
           href="https://buy.stripe.com/9B614o1Jq4EIcgu3p5c3m09"
@@ -492,7 +492,7 @@ function LeadMagnet() {
     <section id="lead-magnet" className="py-20 px-4 bg-gradient-to-b from-[#FDF8F0] to-[#F5EDE0]">
       <div className="max-w-xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-[#3D2B1F] mb-4" style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
-          Get the Free Printable: 10 Verses for Screen-Free Family Time
+          Get the Printable: 10 Verses for Screen-Free Family Time
         </h2>
         <p className="text-[#8C7B6B] mb-6">
           Download a beautifully designed KJV devotional you can print at home. Put it on your fridge, your homeschool table, or your nightstand. One verse for each day your family chooses presence over scrolling.
@@ -515,7 +515,7 @@ function LeadMagnet() {
           </button>
         </form>
         <p className="text-xs text-[#8C7B6B] mb-8">
-          We&apos;ll also send you early access when FaithWall launches.
+          We&apos;ll also send you updates as new features roll out.
         </p>
         {status === 'error' && (
           <p className="text-sm text-red-500 mb-4">Something went wrong. Please try again or email adam@deadhidden.org</p>
@@ -525,8 +525,8 @@ function LeadMagnet() {
             '10 handpicked KJV verses for screen-free family focus',
             'Beautifully designed, print-ready PDF',
             'Daily reflection prompts for mom and kids',
-            'Free — no credit card required',
-            'Early access to FaithWall launch',
+            'No credit card required',
+            'Early access to new FaithWall features',
           ].map((b) => (
             <div key={b} className="flex items-start gap-2 text-sm text-[#5C4D3C]">
               <Check className="w-4 h-4 text-[#C4453A] shrink-0 mt-0.5" />

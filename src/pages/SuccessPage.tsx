@@ -42,21 +42,21 @@ export default function SuccessPage() {
           Welcome to the Wall, Founding Family!
         </h1>
         <p className="text-[#8C7B6B] mb-8">
-          Your payment was successful. You now have lifetime access to FaithWall.
+          Your payment was successful. Your Founding Family annual subscription is active.
         </p>
 
         {/* Next steps */}
         <div className="bg-white rounded-2xl shadow-sm border border-[#E8E0D4] p-6 mb-8 text-left">
           <h3 className="font-bold text-[#3D2B1F] mb-4">What happens next:</h3>
           <p className="text-sm text-[#5C4D3C]">
-            You&apos;ll receive download instructions via email shortly. When FaithWall launches on the App Store and Google Play, you&apos;ll be first in line with your lifetime access ready to go.
+            You now have full access to FaithWall. Check your email for login instructions.
           </p>
         </div>
 
         {/* Freebie */}
         <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 rounded-2xl p-4 mb-8">
           <p className="text-sm text-amber-800 font-medium">
-            🎁 Bonus: Your free &quot;10 Verses for Screen-Free Family Time&quot; printable is in your email.
+            🎁 Bonus: Your &quot;10 Verses for Screen-Free Family Time&quot; printable is in your email.
           </p>
         </div>
 
