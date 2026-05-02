@@ -1,11 +1,10 @@
-import { Heart, ArrowLeft, Gift } from 'lucide-react';
+import { Heart, ArrowLeft } from 'lucide-react';
 
 interface CancelPageProps {
-  onGetPrintable?: () => void;
   onBackToPricing?: () => void;
 }
 
-export default function CancelPage({ onGetPrintable, onBackToPricing }: CancelPageProps) {
+export default function CancelPage({ onBackToPricing }: CancelPageProps) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FDF8F0] to-[#F5EDE0] flex flex-col items-center justify-center px-4 py-12">
       <div className="max-w-md w-full text-center">
@@ -20,31 +19,19 @@ export default function CancelPage({ onGetPrintable, onBackToPricing }: CancelPa
           No worries — grace abounds.
         </h1>
         <p className="text-[#8C7B6B] mb-8">
-          You can still get the printable or come back and buy anytime. The Founding Family pricing is here when you are ready.
+          The Founding Family pricing is here when you are ready.
         </p>
 
-        <div className="flex flex-col gap-3">
-          <button
-            onClick={() => {
-              if (onGetPrintable) onGetPrintable();
-              else window.location.href = '/#lead';
-            }}
-            className="flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-[#C4453A] to-[#A63830] text-white font-bold rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all"
-          >
-            <Gift className="w-5 h-5" />
-            Get the Printable
-          </button>
-          <button
-            onClick={() => {
-              if (onBackToPricing) onBackToPricing();
-              else window.location.search = '';
-            }}
-            className="flex items-center justify-center gap-2 px-8 py-4 bg-white border-2 border-[#C4453A] text-[#C4453A] font-bold rounded-2xl hover:bg-[#C4453A]/5 transition-colors"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Back to Pricing
-          </button>
-        </div>
+        <button
+          onClick={() => {
+            if (onBackToPricing) onBackToPricing();
+            else window.location.search = '';
+          }}
+          className="flex items-center justify-center gap-2 px-8 py-4 bg-white border-2 border-[#C4453A] text-[#C4453A] font-bold rounded-2xl hover:bg-[#C4453A]/5 transition-colors mx-auto"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          Back to Pricing
+        </button>
 
         <p className="mt-8 text-xs text-[#8C7B6B]">
           Questions? Email us at{' '}

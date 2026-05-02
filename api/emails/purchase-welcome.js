@@ -99,11 +99,6 @@ export function getPurchaseWelcomeEmail(email, tier) {
 
             <p><strong>Your download link will arrive via email as soon as FaithWall launches on the App Store and Google Play.</strong> We&rsquo;re putting the final polish on now, and Founding Family members like you will be the very first to get access.</p>
 
-            <div class="download">
-              <p>While you wait, download your free <strong>"10 Verses to Build Your Family Wall"</strong> printable &mdash; put it on the fridge, the bathroom mirror, or wherever your family will see it.</p>
-              <p><a href="https://faithwall.deadhidden.org/faithwall-10-verses-printable.pdf" class="btn">Download My Free Printable</a></p>
-            </div>
-
             <hr class="divider" />
 
             <p class="signoff">Have questions? Reply to this email &mdash; I read every one.</p>
@@ -142,10 +137,6 @@ WHAT'S INCLUDED WITH YOUR PURCHASE:
 Your download link will arrive via email as soon as FaithWall launches on the App Store and Google Play. We're putting the final polish on now, and Founding Family members like you will be the very first to get access.
 
 —
-
-While you wait, download your free "10 Verses to Build Your Family Wall" printable — put it on the fridge, the bathroom mirror, or wherever your family will see it.
-
-Download: https://faithwall.deadhidden.org/faithwall-10-verses-printable.pdf
 
 —
 

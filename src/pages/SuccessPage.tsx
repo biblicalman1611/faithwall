@@ -53,13 +53,6 @@ export default function SuccessPage() {
           </p>
         </div>
 
-        {/* Freebie */}
-        <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 rounded-2xl p-4 mb-8">
-          <p className="text-sm text-amber-800 font-medium">
-            🎁 Bonus: Your &quot;10 Verses for Screen-Free Family Time&quot; printable is in your email.
-          </p>
-        </div>
-
         {/* Share section */}
         <div className="mb-8">
           <h3 className="font-bold text-[#3D2B1F] mb-3">Share FaithWall with friends</h3>
