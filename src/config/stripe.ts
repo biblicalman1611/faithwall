@@ -15,6 +15,18 @@ export const PRICE_FAMILY = 'price_1TSP5wLN6IypHVMVPWLbEap1';
 // Lifetime tier — create this in Stripe dashboard as $199 one-time
 export const PRICE_LIFETIME = 'price_REPLACE_WITH_LIFETIME_PRICE_ID';
 
+/**
+ * Stripe Payment Links — hosted checkout pages.
+ * Simpler than Stripe.js client-side checkout: no publishable key,
+ * no client-only-checkout setting, Stripe handles subscription/payment mode.
+ * Generate at https://dashboard.stripe.com/payment-links
+ */
+export const PAYMENT_LINKS = {
+  individual: 'https://buy.stripe.com/aFa14ogEkefi2FUf7Nc3m0a',
+  family: 'https://buy.stripe.com/3cIfZids87QU1BQaRxc3m0b',
+  lifetime: '', // TODO: create $199 one-time Payment Link
+} as const;
+
 export const PRODUCTS = {
   individual: {
     name: 'FaithWall — Founding Family Individual',

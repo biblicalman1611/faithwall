@@ -3,7 +3,7 @@ import {
   Shield, Zap, ChevronDown
 } from 'lucide-react';
 import { useState } from 'react';
-import { STRIPE_PUBLISHABLE_KEY, PRICE_INDIVIDUAL, PRICE_FAMILY, PRICE_LIFETIME } from '../config/stripe';
+import { PAYMENT_LINKS } from '../config/stripe';
 
 
 interface PricingSectionProps {
@@ -51,45 +51,14 @@ function MiniFAQ() {
 export default function PricingSection({ onGetPrintable }: PricingSectionProps) {
   const [loading, setLoading] = useState<'individual' | 'family' | 'lifetime' | null>(null);
 
-  const handleCheckout = async (priceId: string, type: 'individual' | 'family' | 'lifetime') => {
-    if (STRIPE_PUBLISHABLE_KEY.includes('REPLACE')) {
-      alert('Stripe needs to be configured. Add your Stripe keys in src/config/stripe.ts — takes 2 minutes!');
+  const handleCheckout = (_priceId: string, type: 'individual' | 'family' | 'lifetime') => {
+    const url = PAYMENT_LINKS[type];
+    if (!url) {
+      alert('This tier is launching soon. Email adam@deadhidden.org for early access.');
       return;
     }
-
-    // NOTE: For MVP, using one-time payment mode.
-    // True annual subscription billing will be implemented via Stripe Billing in Phase 2.
-
     setLoading(type);
-    try {
-      if (!(window as any).Stripe) {
-        await new Promise<void>((resolve, reject) => {
-          const script = document.createElement('script');
-          script.src = 'https://js.stripe.com/v3/';
-          script.onload = () => resolve();
-          script.onerror = () => reject(new Error('Failed to load Stripe'));
-          document.head.appendChild(script);
-        });
-      }
-
-      const stripe = (window as any).Stripe(STRIPE_PUBLISHABLE_KEY);
-      const { error } = await stripe.redirectToCheckout({
-        lineItems: [{ price: priceId, quantity: 1 }],
-        mode: 'payment',
-        successUrl: `${window.location.origin}?page=success`,
-        cancelUrl: `${window.location.origin}?page=cancel`,
-      });
-
-      if (error) {
-        console.error('Stripe error:', error);
-        alert('Something went wrong. Please try again.');
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Could not start checkout. Make sure you have configured your Stripe keys.');
-    } finally {
-      setLoading(null);
-    }
+    window.location.href = url;
   };
 
   return (
@@ -169,7 +138,7 @@ export default function PricingSection({ onGetPrintable }: PricingSectionProps) 
               <FeatureItem>Founding Family status</FeatureItem>
             </ul>
             <button
-              onClick={() => handleCheckout(PRICE_INDIVIDUAL, 'individual')}
+              onClick={() => handleCheckout('', 'individual')}
               disabled={loading === 'individual'}
               className="w-full py-4 bg-gradient-to-r from-[#C4453A] to-[#A63830] text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50"
             >
@@ -203,7 +172,7 @@ export default function PricingSection({ onGetPrintable }: PricingSectionProps) 
               <FeatureItem>Priority support</FeatureItem>
             </ul>
             <button
-              onClick={() => handleCheckout(PRICE_FAMILY, 'family')}
+              onClick={() => handleCheckout('', 'family')}
               disabled={loading === 'family'}
               className="w-full py-4 bg-gradient-to-r from-[#C4453A] to-[#A63830] text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50"
             >
@@ -220,7 +189,7 @@ export default function PricingSection({ onGetPrintable }: PricingSectionProps) 
               Want lifetime access? <span className="font-bold text-[#D4A843]">$199</span> one-time. Never pay again.
             </p>
             <button
-              onClick={() => handleCheckout(PRICE_LIFETIME, 'lifetime')}
+              onClick={() => handleCheckout('', 'lifetime')}
               disabled={loading === 'lifetime'}
               className="px-6 py-3 bg-white text-[#C4453A] font-bold rounded-xl hover:bg-white/90 transition-all disabled:opacity-50 text-sm"
             >
