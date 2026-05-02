@@ -17,24 +17,24 @@ const scrollTo = (id: string) => {
 
 /* ───────── data ───────── */
 const FAQS = [
-  { q: 'What data do you collect?', a: 'Almost none. Your name, email, and wall progress (streak count). We do NOT track which apps you use, which verses you read, or your browsing history. Your Scripture time is between you and God.' },
-  { q: 'Can you see what apps I use?', a: 'No. FaithWall uses Apple\'s Screen Time API and Android\'s Usage Stats — these tell us total screen time, but NOT what websites you visit or what you do inside apps. We only know you spent 45 minutes on Instagram, not what you looked at.' },
-  { q: 'Is my kids\' data safe?', a: 'Yes. We\'re COPPA-compliant. Kids under 13 need parent consent. We don\'t collect location, contacts, photos, or any personal data from children\'s accounts. Their wall data belongs to your family.' },
-  { q: 'How does the app blocking actually work?', a: 'On iPhone, we use Apple\'s official Screen Time API — the same system Apple built for parental controls. On Android, we use the Accessibility Service with your permission. You control what gets blocked and when. You can unblock anytime by completing a Scripture task or using an emergency unlock.' },
-  { q: 'Will this slow down my phone?', a: 'No. FaithWall doesn\'t run in the background constantly. It activates only when you start a Wall Mode. When inactive, it uses virtually zero battery or processing power.' },
-  { q: 'Does it work offline?', a: 'Yes! The core Bible content (KJV and WEB translations) is stored on your device. You can wall your phone, read verses, and track progress even without internet. Screen time sync happens when you\'re back online.' },
-  { q: 'What if I need to make an emergency call?', a: 'Emergency calls (911) always work, even when your phone is walled. Phone, Messages, and Maps can be set as "always allowed" apps in your mode settings.' },
-  { q: 'What Bible translations are available?', a: 'Starter tier: King James Version (KJV) and World English Bible (WEB) — both public domain. Premium: adds Berean Standard Bible (BSB). You can also open any verse in YouVersion for NIV, ESV, NKJV, and 2,000+ other translations.' },
-  { q: 'Are the verses random or themed?', a: 'Both! Your daily verse is themed (Family, Peace, Strength, Homeschool, etc.). Quick unlock uses verses from your chosen theme pack. You can also set favorites or add custom verses.' },
+  { q: 'What is real today?', a: 'The landing page, Stripe checkout, and FaithWall web room are real today. The web room saves wall progress on your device, gives you Scripture unlock tasks, and lets you manually check in on screen time.' },
+  { q: 'What is still being built?', a: 'The native iOS and Android apps are still in development. Those apps are the part that will eventually connect with phone-level app blocking and deeper family controls.' },
+  { q: 'Does FaithWall block iPhone or Android apps right now?', a: 'Not from the web room. Browsers cannot block native apps like Instagram or TikTok on your phone. Founding Family buyers get the usable web room now and first access to the native blocking apps as they ship.' },
+  { q: 'What data do you collect?', a: 'The current web room stores wall progress and screen-time check-ins locally in your browser. Stripe handles payment details. FaithWall does not receive your card number.' },
+  { q: 'Can you see what apps I use?', a: 'No. The current web room does not read app usage or browsing history. Screen-time numbers are self-reported until native app integrations are ready.' },
+  { q: 'Is my kids\' data safe?', a: 'The current web room does not create child profiles or collect children\'s personal data. Household features will be built with parent consent and privacy in mind before they launch.' },
+  { q: 'Will this slow down my phone?', a: 'No. The web room runs in your browser and only saves your FaithWall progress on that device.' },
+  { q: 'Does it work offline?', a: 'The browser may keep parts of the web room available after you load it, but offline support is not the main promise yet.' },
+  { q: 'What Bible translation is used?', a: 'The current web room uses King James Version passages. More verse packs and translations can be added as FaithWall grows.' },
+  { q: 'Are the verses random or themed?', a: 'The current web room rotates through a starter set of KJV passages for wall tasks. More themed packs are part of the build roadmap.' },
   { q: 'Do I have to be a Christian to use this?', a: 'Not at all. FaithWall works for anyone who wants to reduce screen time through meaningful reflection. The Scripture content is there if you want it, but the app blocking and focus tools work regardless.' },
-  { q: 'Can I set this up on my kids\' phones?', a: 'Yes! With a Family plan, you can invite up to 10 family members. Each person gets their own wall, but you can see family progress on the parent dashboard. Kids 8+ can use FaithWall with parent setup.' },
-  { q: 'Can I control my kids\' walls from my phone?', a: 'Yes. The parent dashboard lets you see each family member\'s active mode, wall count, and screen time. You can also start a "Family Wall Mode" that applies to everyone\'s phone at once — perfect for dinner time or homeschool hours.' },
-  { q: 'Won\'t my teenager just uninstall it?', a: 'We have layered protection. On iOS, Family Sharing prevents app removal without parent approval. On Android, Device Admin mode requires a password to uninstall. But honestly? The best protection is conversation. When teens see YOU building your wall, they\'re more likely to build theirs.' },
-  { q: 'What do I get when I buy FaithWall?', a: "You get a full year of FaithWall — unlimited Wall Modes, all 30+ verse packs, screen time reports, family sharing, and every update we release during your subscription. Your Founding Family rate is locked in: pay $29.99/yr now, and that's your rate forever, even when regular price goes up." },
-  { q: 'Is this a subscription?', a: 'Yes. FaithWall is an annual subscription. $29.99/yr for individual or $39.99/yr for your whole household. Cancel anytime. Prefer lifetime? $199 one-time.' },
-  { q: 'What happens after I buy?', a: "You\'ll receive download instructions via email immediately after purchase. Your Founding Family membership includes all current and future features." },
-  { q: 'Can I use FaithWall right away?', a: 'Yes. The web app works immediately in your browser. iOS and Android apps are rolling out to Founding Family members first.' },
-  { q: 'Where does the screen time data come from?', a: 'iPhone: Apple\'s Screen Time API (built into iOS). Android: Android\'s Digital Wellbeing system. We show you the same data your phone already tracks — just organized to highlight your Scripture time vs. scrolling time.' },
+  { q: 'Can I set this up on my kids\' phones?', a: 'Today, each family member can use the web room in their own browser. The household plan helps fund the shared family dashboard and gives your household first access as those features ship.' },
+  { q: 'Can I control my kids\' walls from my phone?', a: 'Not yet. Parent controls are part of the native app roadmap, not a live web feature. The current web room is for practicing the FaithWall habit today.' },
+  { q: 'What do I get when I buy FaithWall?', a: "You get one-time Founding Family access: the web room today, development updates, and first access to the iOS/Android app releases. Individual is $29.99 and household is $39.99." },
+  { q: 'Is this a subscription?', a: 'No. The live checkout is a one-time Founding Family purchase.' },
+  { q: 'What happens after I buy?', a: "Stripe confirms your payment, then you can open the web room from the success page. If the purchase email is configured in Vercel, you will also receive that link by email." },
+  { q: 'Can I use FaithWall right away?', a: 'Yes. You can use the web room right away for Scripture unlock tasks, local progress, and manual screen-time check-ins. Native app blocking comes later.' },
+  { q: 'Where does the screen time data come from?', a: 'For the web room, you enter it yourself from your phone Screen Time or Digital Wellbeing report. Native automated screen-time data is part of the mobile app roadmap.' },
   { q: 'Isn\'t this just replacing one addiction with another?', a: 'That\'s a fair question. The difference is intentionality. Doomscrolling is passive and endless — you lose track of time. Reading Scripture is active and time-bounded — 90 seconds, then you choose what to do next. Research shows that even brief moments of reflection reduce impulsive phone use over time.' },
   { q: 'What if I just read the verse quickly without thinking?', a: 'We\'ve all been there. That\'s why FaithWall has multiple task types — you can choose to type the verse from memory, write a prayer, or answer a reflection question. The goal isn\'t speed; it\'s presence. Even 90 seconds of intentional focus changes your brain\'s response to the scroll.' },
   { q: 'Doesn\'t this make me dependent on an app for self-control?', a: 'Think of it like training wheels. FaithWall provides external structure while you build internal discipline. Most users find they naturally reach for their Bible app before their social apps after 2-3 weeks. The wall becomes a habit, then a choice, then a way of life.' },
@@ -108,14 +108,14 @@ function Hero() {
           <span className="text-[#C4453A]">what if they saw you in the Word first?</span>
         </h1>
         <p className="text-lg text-[#8C7B6B] max-w-xl mx-auto mb-8">
-          FaithWall locks distracting apps until you spend quality time with Scripture. Built for Christian families who want presence over scrolling. Become a Founding Family today.
+          FaithWall is an early-access Scripture-before-scrolling web room today, with native phone blocking being built next. Become a Founding Family and help build it right.
         </p>
         <div className="flex flex-wrap gap-4 justify-center mb-10">
           <button
             onClick={() => scrollTo('pricing')}
             className="px-8 py-4 bg-gradient-to-r from-[#C4453A] to-[#A63830] text-white font-bold rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all text-lg"
           >
-            Get FaithWall — $29.99/yr
+            Join Founding Family — $29.99
           </button>
         </div>
 
@@ -125,13 +125,13 @@ function Hero() {
             {/* Mock header */}
             <div className="bg-gradient-to-r from-[#C4453A] to-[#A63830] text-white px-4 py-3 text-center">
               <p className="text-xs opacity-80">Good {greeting}, builder.</p>
-              <p className="text-sm font-bold">🔒 Currently Walled — Family Time</p>
+              <p className="text-sm font-bold">Currently Walled — Family Time</p>
               <p className="text-xs opacity-80 font-mono">00:23:45</p>
             </div>
             {/* Mock content */}
             <div className="flex-1 p-3 space-y-2">
               <div className="bg-white rounded-xl p-3 shadow-sm">
-                <p className="text-[10px] text-[#8C7B6B] mb-1">📖 Verse of the Day — Tap to reveal</p>
+                <p className="text-[10px] text-[#8C7B6B] mb-1">Verse of the Day — Tap to reveal</p>
                 <p className="text-[9px] text-[#5C4D3C] italic">"For God so loved the world..."</p>
               </div>
               <div className="grid grid-cols-2 gap-2">
@@ -146,7 +146,7 @@ function Hero() {
                 ))}
               </div>
               <div className="bg-white rounded-xl p-2 shadow-sm">
-                <p className="text-[9px] text-[#8C7B6B]">🧱 12 walls laid • 5-day streak 🔥</p>
+                <p className="text-[9px] text-[#8C7B6B]">12 walls laid • 5-day streak</p>
                 <div className="flex gap-1 mt-1">
                   {Array.from({ length: 7 }).map((_, i) => (
                     <div key={i} className={`flex-1 h-3 rounded-sm ${i < 6 ? 'bg-[#C4453A]' : 'bg-[#E8E0D4]'}`} />
@@ -208,9 +208,9 @@ function HowItWorks() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
           {[
-            { step: '1', icon: <BookOpen className="w-6 h-6" />, title: 'Choose Your Mode', desc: 'Family Time. Homeschool Hours. Morning Devotion. Bedtime. Create custom modes. Pick which apps to block.' },
-            { step: '2', icon: <Lock className="w-6 h-6" />, title: 'Wall Your Phone', desc: 'One tap. Distracting apps vanish. Notifications silenced. A timer shows how long you\'ve been focused. Your phone becomes a tool, not a trap.' },
-            { step: '3', icon: <Zap className="w-6 h-6" />, title: 'Unlock with Scripture', desc: 'To reopen your apps, spend 90 seconds in God\'s Word — read a verse, reflect, pray. Then choose: 15 min, 30 min, 1 hour, or 2 hours of access.' },
+            { step: '1', icon: <BookOpen className="w-6 h-6" />, title: 'Choose Your Mode', desc: 'Family Time. Homeschool Hours. Morning Devotion. Bedtime. Pick the moment you want to protect.' },
+            { step: '2', icon: <Lock className="w-6 h-6" />, title: 'Start a Wall', desc: 'The web room starts a focus timer and gives you a clear Scripture checkpoint before you return to the scroll.' },
+            { step: '3', icon: <Zap className="w-6 h-6" />, title: 'Unlock with Scripture', desc: 'Read a verse, write a prayer, or receive the word. Each completed task lays another brick in your wall.' },
           ].map((s) => (
             <div key={s.step} className="relative text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-[#C4453A] to-[#A63830] rounded-2xl flex items-center justify-center text-white mx-auto mb-4 shadow-lg">
@@ -240,15 +240,15 @@ function ScreenTimeSection() {
         >
           See Your Screen Time. Build Your Wall.
         </h2>
-        <p className="text-center text-[#C4BFB5] mb-12">Real data. Real change. Real growth.</p>
+        <p className="text-center text-[#C4BFB5] mb-12">Manual check-ins today. Native phone data when the mobile apps ship.</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-[#2A201C] rounded-2xl p-6 border border-[#3D2B1F]">
             <div className="flex items-center gap-2 mb-4">
               <TrendingDown className="w-5 h-5 text-red-400" />
-              <span className="text-sm font-semibold text-red-400">This Week</span>
+              <span className="text-sm font-semibold text-red-400">Manual Check-In</span>
             </div>
-            <p className="text-3xl font-bold mb-1">4.2 hrs</p>
-            <p className="text-xs text-[#8C7B6B]">Time on Instagram (down 23%)</p>
+            <p className="text-3xl font-bold mb-1">Enter it</p>
+            <p className="text-xs text-[#8C7B6B]">Use your phone's Screen Time or Digital Wellbeing report.</p>
             <div className="mt-4 h-2 bg-[#3D2B1F] rounded-full overflow-hidden">
               <div className="h-full w-3/4 bg-gradient-to-r from-red-500 to-red-400 rounded-full" />
             </div>
@@ -258,8 +258,8 @@ function ScreenTimeSection() {
               <TrendingUp className="w-5 h-5 text-green-400" />
               <span className="text-sm font-semibold text-green-400">Scripture Time</span>
             </div>
-            <p className="text-3xl font-bold mb-1">47 min</p>
-            <p className="text-xs text-[#8C7B6B]">Time in God's Word (up 47%)</p>
+            <p className="text-3xl font-bold mb-1">Tracked</p>
+            <p className="text-xs text-[#8C7B6B]">FaithWall counts completed wall tasks in the web room.</p>
             <div className="mt-4 h-2 bg-[#3D2B1F] rounded-full overflow-hidden">
               <div className="h-full w-1/2 bg-gradient-to-r from-green-500 to-green-400 rounded-full" />
             </div>
@@ -269,8 +269,8 @@ function ScreenTimeSection() {
               <Flame className="w-5 h-5 text-[#D4A843]" />
               <span className="text-sm font-semibold text-[#D4A843]">Your Wall</span>
             </div>
-            <p className="text-3xl font-bold mb-1">12 walls</p>
-            <p className="text-xs text-[#8C7B6B]">Laid this week • 5-day streak 🔥</p>
+            <p className="text-3xl font-bold mb-1">Your wall</p>
+            <p className="text-xs text-[#8C7B6B]">Saved privately in this browser.</p>
             <div className="flex gap-1 mt-4">
               {Array.from({ length: 12 }).map((_, i) => (
                 <div key={i} className="w-5 h-4 rounded-sm bg-[#C4453A]" />
@@ -295,9 +295,9 @@ function FamilySection() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
           {[
-            { icon: <Shield className="w-6 h-6" />, title: "Mom's Phone", desc: 'Set up FaithWall on your own phone first. Choose your modes. Build your wall. Your kids see you leading by example.' },
-            { icon: <Users className="w-6 h-6" />, title: "Kids' Phones", desc: 'Invite your kids (ages 8+). Set up their modes from your parent dashboard. They see YOUR progress too — parent modeling in action.' },
-            { icon: <Heart className="w-6 h-6" />, title: 'Spouse Sync', desc: 'Link your spouse\'s phone. Share family modes like "Dinner Time" and "Homeschool Hours." Build the wall together.' },
+            { icon: <Shield className="w-6 h-6" />, title: "Start With Your Phone", desc: 'Open the web room, choose a mode, and build the habit in front of your family first.' },
+            { icon: <Users className="w-6 h-6" />, title: "Household Access", desc: 'The household Founding Family plan helps fund the shared family wall and parent dashboard as those features ship.' },
+            { icon: <Heart className="w-6 h-6" />, title: 'Build Together', desc: 'Use family check-ins and the web room now while the native family controls are being built.' },
           ].map((f) => (
             <div key={f.title} className="bg-[#FDF8F0] rounded-2xl p-6 border border-[#E8E0D4]">
               <div className="w-12 h-12 bg-[#C4453A]/10 rounded-xl flex items-center justify-center text-[#C4453A] mb-4">
@@ -324,27 +324,27 @@ function Testimonials() {
           className="text-3xl md:text-4xl font-bold text-center mb-12"
           style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#D4A843' }}
         >
-          What Families Are Saying
+          What Founding Families Are Funding
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { text: 'I was hitting "Ignore Limit" on Screen Time every single day. Then I found something better than a limit — a reason. Reading Psalm 23 to unlock my phone changed the whole tone of our homeschool day.', author: 'Sarah M.', detail: 'homeschool mom of 3' },
-            { text: "My son caught me scrolling during math and said 'Mommy, why are you always on your phone?' FaithWall gives me external help — I literally CAN'T open Instagram without reading a verse first. Now my kids see the right thing.", author: 'Jessica T.', detail: 'homeschool mom of 4' },
-            { text: "Two weeks in and my screen time is down 47%. I memorized Colossians 3:2 because I had to type it to unlock my phone. The kids are ASKING me to read them the verses I get. This has been an answer to prayer.", author: 'Rachel K.', detail: 'homeschool mom of 2' },
+            { title: 'A Real Web Room', text: 'Scripture unlock tasks, wall progress, streaks, and manual screen-time check-ins that families can use while the mobile apps are being built.' },
+            { title: 'Native App Blocking', text: 'The iOS and Android builds that can connect with phone-level controls instead of pretending a browser can block native apps.' },
+            { title: 'Household Tools', text: 'Shared family wall, parent dashboard, verse packs, and better onboarding for spouses and kids as FaithWall grows.' },
           ].map((t, i) => (
             <div key={i} className="bg-[#2A201C] rounded-2xl p-6 border border-[#3D2B1F]">
               <div className="flex gap-1 mb-4">
                 {[1, 2, 3, 4, 5].map((s) => <Star key={s} className="w-4 h-4 text-[#D4A843] fill-[#D4A843]" />)}
               </div>
-              <p className="text-sm text-[#E8E0D4] mb-4 italic">"{t.text}"</p>
-              <p className="text-xs text-[#8C7B6B]">— {t.author}, {t.detail}</p>
+              <h3 className="font-bold text-[#F5F0E8] mb-2">{t.title}</h3>
+              <p className="text-sm text-[#E8E0D4]">{t.text}</p>
             </div>
           ))}
         </div>
         <div className="flex flex-wrap justify-center gap-6 mt-10 text-xs text-[#C4BFB5]">
-          <span className="flex items-center gap-1"><Check className="w-3 h-3 text-green-500" /> KJV, WEB & BSB Scriptures</span>
-          <span className="flex items-center gap-1"><Check className="w-3 h-3 text-green-500" /> Free core features</span>
-          <span className="flex items-center gap-1"><Check className="w-3 h-3 text-green-500" /> Family sharing</span>
+          <span className="flex items-center gap-1"><Check className="w-3 h-3 text-green-500" /> Starter KJV verses</span>
+          <span className="flex items-center gap-1"><Check className="w-3 h-3 text-green-500" /> Web room usable now</span>
+          <span className="flex items-center gap-1"><Check className="w-3 h-3 text-green-500" /> Family tools in progress</span>
           <span className="flex items-center gap-1"><Check className="w-3 h-3 text-green-500" /> No subscriptions required</span>
         </div>
       </div>
@@ -417,16 +417,14 @@ function SupportMission() {
           more verse packs, and making sure this tool reaches every Christian family that needs it. Purchases support the ongoing mission too.
         </p>
         <a
-          href="https://buy.stripe.com/9B614o1Jq4EIcgu3p5c3m09"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#pricing"
           className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#D4A843] to-[#A67C2E] text-[#1A1210] font-bold rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all text-lg"
         >
           <Gift className="w-5 h-5" />
-          Give a One-Time Gift
+          Choose Founding Family Access
         </a>
         <p className="mt-4 text-xs text-[#5C4A3A]">
-          Stripe secured • Any amount helps • You will receive a personal thank-you from our family
+          Stripe secured • One-time access • You will receive a personal thank-you from our family
         </p>
       </div>
     </section>
@@ -451,7 +449,7 @@ function Footer() {
         <a href="mailto:adam@deadhidden.org" className="hover:text-white transition-colors">Contact</a>
       </div>
       <p className="text-xs text-[#5C4A3A]">&copy; 2026 FaithWall. Built for His glory.</p>
-      <p className="text-xs text-[#5C4A3A] mt-1">Made by a homeschool dad who was tired of his own screen time 🧱</p>
+      <p className="text-xs text-[#5C4A3A] mt-1">Made by a homeschool dad who was tired of his own screen time.</p>
     </footer>
   );
 }
@@ -478,17 +476,23 @@ function LandingPage() {
 /* ───────── app router ───────── */
 export default function App() {
   const [page, setPage] = useState('');
+  const [path, setPath] = useState(window.location.pathname);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setPage(params.get('page') || '');
-    const handlePop = () => setPage(new URLSearchParams(window.location.search).get('page') || '');
+    const syncRoute = () => {
+      setPage(new URLSearchParams(window.location.search).get('page') || '');
+      setPath(window.location.pathname);
+    };
+    syncRoute();
+    const handlePop = () => syncRoute();
     window.addEventListener('popstate', handlePop);
     return () => window.removeEventListener('popstate', handlePop);
   }, []);
 
-  if (page === 'success') return <SuccessPage />;
-  if (page === 'cancel') return <CancelPage onBackToPricing={() => { window.location.search = ''; }} />;
-  if (page === 'app') return <DemoApp />;
+  const route = path.replace(/^\/+|\/+$/g, '');
+
+  if (page === 'success' || route === 'success') return <SuccessPage />;
+  if (page === 'cancel' || route === 'cancel') return <CancelPage onBackToPricing={() => { window.location.href = '/#pricing'; }} />;
+  if (page === 'app' || route === 'app') return <DemoApp />;
   return <LandingPage />;
 }

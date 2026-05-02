@@ -1,5 +1,5 @@
 import {
-  Check, Infinity, Lock, Users,
+  Check, Lock, Users,
   Shield, Zap, ChevronDown
 } from 'lucide-react';
 import { useState } from 'react';
@@ -20,9 +20,9 @@ function FeatureItem({ children, bold }: { children: React.ReactNode; bold?: boo
 function MiniFAQ() {
   const [open, setOpen] = useState<number | null>(null);
   const items = [
-    { q: 'Why is Founding Family pricing so cheap?', a: 'Founding Families lock in annual pricing at half the regular rate. $29.99/yr now vs $59.99/yr later.' },
-    { q: 'What happens after I pay?', a: "You'll receive immediate access to the FaithWall web app. Your annual subscription renews automatically each year at your locked-in Founding Family rate. Cancel anytime." },
-    { q: 'Can I upgrade to lifetime?', a: 'Yes. Anytime from your account settings. $199 one-time. Never pay again.' },
+    { q: 'Why is Founding Family pricing so low?', a: 'This is early-access pricing while FaithWall is being built in public. Your one-time purchase helps fund the web app, the native iOS/Android app, and family features.' },
+    { q: 'What happens after I pay?', a: "Stripe confirms your purchase, then you can open the FaithWall web room right away. You'll also be first in line for the native app releases." },
+    { q: 'Is this a subscription?', a: 'No. The live checkout links are one-time Founding Family purchases: $29.99 individual or $39.99 household.' },
   ];
   return (
     <div className="max-w-lg mx-auto mt-8 space-y-2">
@@ -47,16 +47,36 @@ function MiniFAQ() {
 }
 
 export default function PricingSection(_: PricingSectionProps) {
-  const [loading, setLoading] = useState<'individual' | 'family' | 'lifetime' | null>(null);
+  const [loading, setLoading] = useState<'individual' | 'family' | null>(null);
 
-  const handleCheckout = (_priceId: string, type: 'individual' | 'family' | 'lifetime') => {
+  const handleCheckout = async (type: 'individual' | 'family') => {
+    setLoading(type);
+
+    try {
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tier: type }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data.url) {
+          window.location.href = data.url;
+          return;
+        }
+      }
+    } catch {
+      // Fall back to Stripe Payment Links when the server checkout endpoint is not configured yet.
+    }
+
     const url = PAYMENT_LINKS[type];
-    if (!url) {
-      alert('This tier is launching soon. Email adam@deadhidden.org for early access.');
+    if (url) {
+      window.location.href = url;
       return;
     }
-    setLoading(type);
-    window.location.href = url;
+
+    setLoading(null);
+    alert('Checkout is being connected. Email adam@deadhidden.org and we will get you set up.');
   };
 
   return (
@@ -69,7 +89,7 @@ export default function PricingSection(_: PricingSectionProps) {
           Choose Your Wall
         </h2>
         <p className="text-center text-white/80 mb-12">
-          Annual subscription. Cancel anytime. Lock in your Founding Family rate forever.
+          One-time Founding Family access. No subscription. Help build the native app while using the web room today.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
@@ -80,30 +100,27 @@ export default function PricingSection(_: PricingSectionProps) {
             </div>
             <div className="text-xs font-bold text-[#8C7B6B] uppercase tracking-wider mb-2">Founding Family</div>
             <div className="flex items-baseline gap-2 mb-1">
-              <span className="text-4xl font-bold text-[#3D2B1F]">$29.99/yr</span>
-              <span className="text-lg text-[#C4BFB5] line-through">$59.99/yr</span>
+              <span className="text-4xl font-bold text-[#3D2B1F]">$29.99</span>
+              <span className="text-lg text-[#C4BFB5] line-through">$59.99</span>
             </div>
-            <div className="text-sm text-[#8C7B6B] mb-3">Annual subscription. Cancel anytime.</div>
+            <div className="text-sm text-[#8C7B6B] mb-3">One-time early-access purchase.</div>
             <div className="text-xs text-[#C4453A] font-semibold mb-4">
-              Lock in this price forever
+              Founding Family price
             </div>
             <ul className="space-y-1 mb-6">
-              <FeatureItem bold>Everything in Free</FeatureItem>
-              <FeatureItem bold><Infinity className="w-3.5 h-3.5 inline mr-1" />Unlimited Wall Modes</FeatureItem>
-              <FeatureItem>All 30+ Verse Packs</FeatureItem>
-              <FeatureItem>Full screen time reports + trends</FeatureItem>
-              <FeatureItem>Advanced wall analytics</FeatureItem>
-              <FeatureItem><Lock className="w-3.5 h-3.5 inline mr-1" />10 emergency unlocks/month</FeatureItem>
-              <FeatureItem>All translations (KJV, WEB, BSB)</FeatureItem>
-              <FeatureItem>All updates included</FeatureItem>
-              <FeatureItem>Founding Family status</FeatureItem>
+              <FeatureItem bold>Immediate FaithWall web room access</FeatureItem>
+              <FeatureItem bold>Scripture unlock flow and wall progress</FeatureItem>
+              <FeatureItem>Manual screen-time check-ins</FeatureItem>
+              <FeatureItem>Buyer updates as the native apps ship</FeatureItem>
+              <FeatureItem>First access to iOS and Android builds</FeatureItem>
+              <FeatureItem>Founding Family updates</FeatureItem>
             </ul>
             <button
-              onClick={() => handleCheckout('', 'individual')}
+              onClick={() => handleCheckout('individual')}
               disabled={loading === 'individual'}
               className="w-full py-4 bg-gradient-to-r from-[#C4453A] to-[#A63830] text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50"
             >
-              {loading === 'individual' ? 'Loading...' : 'Subscribe — $29.99/yr'}
+              {loading === 'individual' ? 'Loading...' : 'Join — $29.99'}
             </button>
           </div>
 
@@ -111,54 +128,33 @@ export default function PricingSection(_: PricingSectionProps) {
           <div className="bg-white rounded-2xl p-6 shadow-lg border-2 border-[#C4453A]">
             <div className="text-xs font-bold text-[#8C7B6B] uppercase tracking-wider mb-2">Household</div>
             <div className="flex items-baseline gap-2 mb-1">
-              <span className="text-4xl font-bold text-[#3D2B1F]">$39.99/yr</span>
-              <span className="text-lg text-[#C4BFB5] line-through">$79.99/yr</span>
+              <span className="text-4xl font-bold text-[#3D2B1F]">$39.99</span>
+              <span className="text-lg text-[#C4BFB5] line-through">$79.99</span>
             </div>
-            <div className="text-sm text-[#8C7B6B] mb-3">Annual subscription. Whole family.</div>
+            <div className="text-sm text-[#8C7B6B] mb-3">One-time household early access.</div>
             <div className="inline-block bg-[#C4453A] text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
               BEST VALUE
             </div>
             <div className="text-xs text-[#C4453A] font-semibold mb-4">
-              Lock in this price forever
+              Founding household price
             </div>
             <ul className="space-y-1 mb-6">
               <FeatureItem bold>Everything in Individual</FeatureItem>
-              <FeatureItem bold><Users className="w-3.5 h-3.5 inline mr-1" />Family sharing (up to 10)</FeatureItem>
-              <FeatureItem>Shared family wall</FeatureItem>
-              <FeatureItem>Shared family modes</FeatureItem>
-              <FeatureItem><Shield className="w-3.5 h-3.5 inline mr-1" />Parent dashboard</FeatureItem>
-              <FeatureItem><Zap className="w-3.5 h-3.5 inline mr-1" />Unlimited emergency unlocks</FeatureItem>
-              <FeatureItem>All updates included</FeatureItem>
-              <FeatureItem>Founding Family status</FeatureItem>
+              <FeatureItem bold><Users className="w-3.5 h-3.5 inline mr-1" />Household access for your family</FeatureItem>
+              <FeatureItem>Shared family wall in the web room</FeatureItem>
+              <FeatureItem>Family modes as they ship</FeatureItem>
+              <FeatureItem><Shield className="w-3.5 h-3.5 inline mr-1" />Parent dashboard priority access</FeatureItem>
+              <FeatureItem><Zap className="w-3.5 h-3.5 inline mr-1" />Native app beta priority</FeatureItem>
+              <FeatureItem>Founding Family updates</FeatureItem>
               <FeatureItem>Priority support</FeatureItem>
             </ul>
             <button
-              onClick={() => handleCheckout('', 'family')}
+              onClick={() => handleCheckout('family')}
               disabled={loading === 'family'}
               className="w-full py-4 bg-gradient-to-r from-[#C4453A] to-[#A63830] text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all disabled:opacity-50"
             >
-              {loading === 'family' ? 'Loading...' : 'Subscribe — $39.99/yr'}
+              {loading === 'family' ? 'Loading...' : 'Join Household — $39.99'}
             </button>
-          </div>
-        </div>
-
-        {/* Lifetime callout */}
-        <div className="max-w-md mx-auto mt-8">
-          <div className="bg-white/10 backdrop-blur rounded-2xl p-6 text-center border border-white/20">
-            <div className="text-sm font-bold text-white/90 uppercase tracking-wider mb-2">Lifetime Access</div>
-            <p className="text-white mb-4">
-              Want lifetime access? <span className="font-bold text-[#D4A843]">$199</span> one-time. Never pay again.
-            </p>
-            <button
-              onClick={() => handleCheckout('', 'lifetime')}
-              disabled={loading === 'lifetime'}
-              className="px-6 py-3 bg-white text-[#C4453A] font-bold rounded-xl hover:bg-white/90 transition-all disabled:opacity-50 text-sm"
-            >
-              {loading === 'lifetime' ? 'Loading...' : 'Get Lifetime — $199'}
-            </button>
-            <p className="text-xs text-white/60 mt-3">
-              Upgrade anytime from your annual plan.
-            </p>
           </div>
         </div>
 
@@ -166,7 +162,7 @@ export default function PricingSection(_: PricingSectionProps) {
         <div className="flex flex-wrap justify-center gap-6 mt-8 text-xs text-white/80">
           <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> Secure Stripe payment</span>
           <span className="flex items-center gap-1"><Check className="w-3 h-3" /> All sales final</span>
-          <span className="flex items-center gap-1"><Infinity className="w-3 h-3" /> Annual subscription, cancel anytime</span>
+          <span className="flex items-center gap-1"><Check className="w-3 h-3" /> One-time Founding Family access</span>
         </div>
 
         <MiniFAQ />

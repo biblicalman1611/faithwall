@@ -2,7 +2,7 @@
 
 ---
 
-## Subject Lines (A/B/C Test)
+## Subject Lines
 
 **A.** Your kids are watching you scroll
 **B.** I was tired of being a hypocrite in my own house
@@ -14,28 +14,25 @@
 
 I was tired of being a hypocrite in my own house.
 
-I'd tell my son to put his tablet down — then I'd pick my phone up five minutes later. I'd preach to him about guarding his heart while I let some algorithm decide what I saw next. I'd read him Bible stories at bedtime and then doomscroll through garbage after he fell asleep.
+I'd tell my son to put his tablet down, then pick my phone up five minutes later. I'd talk about guarding the heart while letting an algorithm decide what got my attention next.
 
-Same house. Same roof. Different standard.
+Same roof. Different standard.
 
-And the worst part? He saw it. They all see it. Our kids are watching us more closely than we think. When we tell them to look up from their screens but can't look up from ours, they learn something we never intended to teach: that the rules are for children, and adults get to stay distracted.
+That is why Christie and I started building FaithWall.
 
-**That ends now.**
+The first version is live now. It is a web room you can use today: choose a focus mode, pause before the scroll, read Scripture, complete a short prayer or reflection, and build visible progress one brick at a time.
 
-I built FaithWall because I needed it myself. It's a screen-locking app that puts Scripture between you and the scroll. Before your thumb moves, you get a verse. A short reflection. A breath. A moment to remember who you are and who you're called to lead.
+Straight truth: the native iOS and Android app blocking is still being built. The browser version cannot honestly block Instagram or TikTok on your phone. What it can do now is help you practice the interruption: Scripture before scrolling.
 
-Here's how it works:
+Founding Family access:
 
-- **Lock any app** behind a Scripture card — social media, news, games, whatever pulls at your attention
-- **Set family modes** — different rules for your phone, your wife's, your kids' devices, all from one account
-- **Track screen time** — daily reports so you can actually see where your hours went
-- **All verse packs included** — plus new ones as we release them, forever
+- $29.99 individual
+- $39.99 household
+- One-time early-access purchase
+- Web room access today
+- First access as the native app and household tools ship
 
-No subscriptions. No monthly fee. No "premium tier" that costs extra.
-
-**$29.99 for individual lifetime access. $39.99 for the whole family.** That's less than one impulse Amazon order that shows up at your door in a cardboard box you immediately regret.
-
-This is an investment in your attention, your marriage, and the example you're setting under your own roof. The most important leadership position you hold isn't at work. It's at the dinner table, at bedtime, on the couch when everyone's together and everyone's on their phones.
+This is an investment in attention, example, and the tone of your house.
 
 Lead by example. Build the wall.
 
@@ -45,5 +42,3 @@ Questions? Hit reply. I read every one.
 
 Adam
 *biblicalman*
-
-P.S. — If you're on the fence: ask your wife what she thinks about your screen time. Her answer might be the nudge you need. Then go build that wall together.

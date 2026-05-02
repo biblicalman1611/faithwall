@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import {
   Home, Lock, Unlock, TrendingUp, Flame, BookOpen,
   Sun, Moon, Briefcase, Lamp, Users, Heart, Mic, Pen,
-  Check, Share2, Shield, AlertTriangle
+  Check, Share2, Shield, AlertTriangle, Smartphone
 } from 'lucide-react';
 
 /* ───────── types ───────── */
@@ -19,7 +19,7 @@ interface DailyVerse {
 }
 
 interface AppState {
-  trialStart: string | null;
+  accessStarted: string | null;
   isPremium: boolean;
   activeMode: string | null;
   activeModeStart: number | null;
@@ -28,12 +28,36 @@ interface AppState {
   longestStreak: number;
   wallHistory: WallRecord[];
   dailyVerse: DailyVerse;
+  screenMinutesToday: number | null;
+  screenCheckInDate: string;
 }
 
 type Screen = 'home' | 'unwall' | 'progress';
 
 /* ───────── constants ───────── */
 const STORAGE_KEY = 'fw_app_state';
+
+function todayKey(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
+const DEFAULT_STATE: AppState = {
+  accessStarted: null,
+  isPremium: true,
+  activeMode: null,
+  activeModeStart: null,
+  totalWalls: 0,
+  currentStreak: 0,
+  longestStreak: 0,
+  wallHistory: [],
+  dailyVerse: {
+    reference: 'John 3:16',
+    text: 'For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.',
+    translation: 'KJV',
+  },
+  screenMinutesToday: null,
+  screenCheckInDate: todayKey(),
+};
 
 const DAILY_VERSE: DailyVerse = {
   reference: 'John 3:16',
@@ -65,19 +89,17 @@ const MODES = [
 function loadState(): AppState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      const next = { ...DEFAULT_STATE, ...parsed };
+      if (next.screenCheckInDate !== todayKey()) {
+        next.screenMinutesToday = null;
+        next.screenCheckInDate = todayKey();
+      }
+      return next;
+    }
   } catch { /* ignore */ }
-  return {
-    trialStart: null,
-    isPremium: true,
-    activeMode: null,
-    activeModeStart: null,
-    totalWalls: 0,
-    currentStreak: 0,
-    longestStreak: 0,
-    wallHistory: [],
-    dailyVerse: DAILY_VERSE,
-  };
+  return DEFAULT_STATE;
 }
 
 function saveState(state: AppState) {
@@ -97,15 +119,6 @@ function formatDuration(ms: number): string {
   const m = Math.floor((totalSeconds % 3600) / 60);
   const s = totalSeconds % 60;
   return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-}
-
-function getTrialHoursRemaining(): number {
-  const trialStart = localStorage.getItem('fw_trial_start');
-  if (!trialStart) return 72;
-  const start = new Date(trialStart);
-  const now = new Date();
-  const hoursElapsed = (now.getTime() - start.getTime()) / (1000 * 60 * 60);
-  return Math.max(0, 72 - hoursElapsed);
 }
 
 /* ───────── brick wall visual ───────── */
@@ -210,30 +223,11 @@ function BrickLaidOverlay({ mode, onDone }: { mode: string; onDone: () => void }
   );
 }
 
-/* ───────── trial banner ───────── */
-function TrialBanner({ hoursRemaining, isPremium }: { hoursRemaining: number; isPremium: boolean }) {
-  if (isPremium && hoursRemaining <= 0) {
-    return (
-      <div className="bg-gradient-to-r from-amber-600 to-yellow-600 text-white px-4 py-3 text-center text-sm font-semibold">
-        Your preview has ended. Upgrade to keep building.
-        <a href="/?page=pricing" className="underline ml-2 font-bold">Upgrade $29.99 &rarr;</a>
-      </div>
-    );
-  }
-
-  if (isPremium) {
-    const h = Math.floor(hoursRemaining);
-    return (
-      <div className="bg-gradient-to-r from-[#C4453A] to-[#A63830] text-white px-4 py-2.5 text-center text-xs font-semibold flex items-center justify-center gap-2">
-        <span className="animate-pulse">&#9201;</span>
-        {h} hours left in your preview
-      </div>
-    );
-  }
-
+/* ───────── status banner ───────── */
+function StatusBanner() {
   return (
-    <div className="bg-[#2A201C] border-b border-[#D4A843]/30 text-[#D4A843] px-4 py-3 text-center text-xs">
-      Preview ended. <a href="/?page=pricing" className="underline font-bold">Upgrade to Founding Family for $29.99 &rarr;</a>
+    <div className="bg-[#2A201C] border-b border-[#D4A843]/30 text-[#D4A843] px-4 py-3 text-center text-xs leading-relaxed">
+      FaithWall Web Room: progress saves on this device. Native phone blocking is being built for the mobile app.
     </div>
   );
 }
@@ -296,6 +290,61 @@ function ModeCard({ mode, onWall }: { mode: typeof MODES[0]; onWall: () => void 
   );
 }
 
+/* ───────── manual screen-time check-in ───────── */
+function ScreenTimeCheckIn({
+  minutes,
+  onSave,
+}: {
+  minutes: number | null;
+  onSave: (minutes: number) => void;
+}) {
+  const [value, setValue] = useState(minutes?.toString() || '');
+
+  useEffect(() => {
+    setValue(minutes?.toString() || '');
+  }, [minutes]);
+
+  const parsed = Number(value);
+  const canSave = Number.isFinite(parsed) && parsed >= 0 && parsed <= 1440;
+
+  return (
+    <div className="bg-white rounded-2xl border border-[#E8E0D4] p-4">
+      <div className="flex items-start gap-3">
+        <div className="w-10 h-10 rounded-xl bg-[#C4453A]/10 flex items-center justify-center text-[#C4453A] shrink-0">
+          <Smartphone className="w-5 h-5" />
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-semibold text-[#3D2B1F]">Today's screen-time check-in</p>
+          <p className="text-xs text-[#8C7B6B] mt-1">
+            Enter the minutes from your phone report. FaithWall saves it on this device.
+          </p>
+        </div>
+      </div>
+      <div className="flex gap-2 mt-4">
+        <input
+          value={value}
+          onChange={(e) => setValue(e.target.value.replace(/[^0-9]/g, ''))}
+          inputMode="numeric"
+          placeholder="Minutes"
+          className="min-w-0 flex-1 rounded-xl border border-[#E8E0D4] bg-[#FDF8F0] px-4 py-3 text-sm text-[#3D2B1F] placeholder-[#8C7B6B] focus:outline-none focus:ring-2 focus:ring-[#C4453A]/30"
+        />
+        <button
+          onClick={() => canSave && onSave(Math.round(parsed))}
+          disabled={!canSave}
+          className="px-4 py-3 bg-[#3D2B1F] text-white rounded-xl text-sm font-bold disabled:opacity-40"
+        >
+          Save
+        </button>
+      </div>
+      {minutes !== null && (
+        <p className="text-xs text-[#5A8F6E] font-semibold mt-3">
+          Saved: {Math.floor(minutes / 60)}h {minutes % 60}m today.
+        </p>
+      )}
+    </div>
+  );
+}
+
 /* ───────── active wall banner ───────── */
 function ActiveWallBanner({
   modeName,
@@ -347,11 +396,13 @@ function HomeScreen({
   onStartWall,
   onUnwall,
   onEmergency,
+  onScreenCheckIn,
 }: {
   state: AppState;
   onStartWall: (mode: string) => void;
   onUnwall: () => void;
   onEmergency: () => void;
+  onScreenCheckIn: (minutes: number) => void;
 }) {
   const greeting = getGreeting();
 
@@ -390,6 +441,11 @@ function HomeScreen({
           </div>
         </div>
       )}
+
+      <ScreenTimeCheckIn
+        minutes={state.screenMinutesToday}
+        onSave={onScreenCheckIn}
+      />
 
       {/* Quick progress preview */}
       {state.totalWalls > 0 && (
@@ -434,7 +490,7 @@ function UnwallScreen({
   const [noteText, setNoteText] = useState('');
   const [readingDone, setReadingDone] = useState(false);
 
-  const currentVerse = VERSES_POOL[Math.floor(Math.random() * VERSES_POOL.length)];
+  const [currentVerse] = useState(() => VERSES_POOL[Math.floor(Math.random() * VERSES_POOL.length)]);
 
   const handleComplete = () => {
     if (!taskType) return;
@@ -780,41 +836,13 @@ function EmergencyModal({
   );
 }
 
-/* ───────── main TrialApp component ───────── */
-export default function TrialApp() {
+/* ───────── main FaithWall room component ───────── */
+export default function FaithWallRoom() {
   const [state, setState] = useState<AppState>(loadState);
   const [screen, setScreen] = useState<Screen>('home');
-  const [hoursRemaining, setHoursRemaining] = useState(72);
   const [showBrickAnim, setShowBrickAnim] = useState(false);
   const [showEmergency, setShowEmergency] = useState(false);
   const [completedMode, setCompletedMode] = useState('');
-
-  /* trial check */
-  useEffect(() => {
-    const trialStart = localStorage.getItem('fw_trial_start');
-    if (!trialStart) {
-      localStorage.setItem('fw_trial_start', new Date().toISOString());
-      setState((s) => {
-        const next = { ...s, trialStart: new Date().toISOString(), isPremium: true };
-        saveState(next);
-        return next;
-      });
-    } else {
-      const hrs = getTrialHoursRemaining();
-      setHoursRemaining(hrs);
-      setState((s) => {
-        const next = { ...s, trialStart, isPremium: hrs > 0 };
-        saveState(next);
-        return next;
-      });
-    }
-
-    // Update hours every minute
-    const interval = setInterval(() => {
-      setHoursRemaining(getTrialHoursRemaining());
-    }, 60000);
-    return () => clearInterval(interval);
-  }, []);
 
   /* persist state changes */
   useEffect(() => {
@@ -870,12 +898,20 @@ export default function TrialApp() {
     setScreen('home');
   }, []);
 
+  const handleScreenCheckIn = useCallback((minutes: number) => {
+    setState((s) => ({
+      ...s,
+      screenMinutesToday: minutes,
+      screenCheckInDate: todayKey(),
+    }));
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#FDF8F0] to-[#F5EDE0] flex justify-center items-start py-4 md:py-8 px-4">
       {/* Phone frame on desktop, full width on mobile */}
       <div className="w-full max-w-[400px] md:border-[8px] md:border-[#3D2B1F] md:rounded-[48px] overflow-hidden relative md:shadow-2xl md:h-[800px] md:overflow-y-auto bg-gradient-to-b from-[#FDF8F0] to-[#F5EDE0]">
-        {/* Trial banner */}
-        <TrialBanner hoursRemaining={hoursRemaining} isPremium={state.isPremium} />
+        {/* Status banner */}
+        <StatusBanner />
 
         {/* Main content */}
         <main className="px-4 pt-5 pb-20 relative min-h-[500px]">
@@ -885,6 +921,7 @@ export default function TrialApp() {
               onStartWall={handleStartWall}
               onUnwall={handleUnwall}
               onEmergency={() => setShowEmergency(true)}
+              onScreenCheckIn={handleScreenCheckIn}
             />
           )}
           {screen === 'unwall' && (

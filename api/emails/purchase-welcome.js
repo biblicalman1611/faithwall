@@ -15,7 +15,7 @@ export function getPurchaseWelcomeEmail(email, tier) {
   const price = tier === "family" ? "$39.99" : "$29.99";
   const tierLabel = tier === "family" ? "Family" : "Individual";
 
-  const subject = "Welcome to FaithWall, Founding Family";
+  const subject = "Your FaithWall web room is ready";
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -82,22 +82,26 @@ export function getPurchaseWelcomeEmail(email, tier) {
 
             <p>Your purchase is confirmed.</p>
 
-            <p><strong>${tierLabel} Plan — ${price}</strong> (one-time, lifetime access)</p>
+            <p><strong>${tierLabel} Plan — ${price}</strong> (one-time Founding Family access)</p>
 
             <p>You just made one of the best investments you can make for your family&rsquo;s attention. No more mindless scrolling. No more failed screen-time limits that your kids learn to work around. Just a wall built on Scripture &mdash; and you&rsquo;re on the inside of it.</p>
 
             <div class="features">
               <h3>What&rsquo;s Included With Your Purchase</h3>
               <ul>
-                <li><span>&check;</span> Unlimited screen-locking modes</li>
-                <li><span>&check;</span> All verse packs (plus future packs at no extra cost)</li>
-                <li><span>&check;</span> Screen time tracking and daily reports</li>
-                <li><span>&check;</span> Family sharing across all devices</li>
-                <li><span>&check;</span> Lifetime updates for as long as FaithWall exists</li>
+                <li><span>&check;</span> FaithWall web room access today</li>
+                <li><span>&check;</span> Scripture unlock tasks and wall progress</li>
+                <li><span>&check;</span> Manual screen-time check-ins</li>
+                <li><span>&check;</span> Founding Family development updates</li>
+                <li><span>&check;</span> First access to iOS and Android releases</li>
               </ul>
             </div>
 
-            <p><strong>Your download link will arrive via email as soon as FaithWall launches on the App Store and Google Play.</strong> We&rsquo;re putting the final polish on now, and Founding Family members like you will be the very first to get access.</p>
+            <p><strong>You can open the FaithWall web room right now.</strong> It saves your progress on this device while the native iOS and Android apps are being built.</p>
+
+            <p><a href="https://faithwall.deadhidden.org/app" class="btn">Open FaithWall Web Room</a></p>
+
+            <p>We&rsquo;ll keep Founding Family members first in line as the native app and household features ship.</p>
 
             <hr class="divider" />
 
@@ -122,21 +126,22 @@ export function getPurchaseWelcomeEmail(email, tier) {
 
 Your purchase is confirmed.
 
-${tierLabel} Plan — ${price} (one-time, lifetime access)
+${tierLabel} Plan — ${price} (one-time Founding Family access)
 
 You just made one of the best investments you can make for your family's attention. No more mindless scrolling. No more failed screen-time limits that your kids learn to work around. Just a wall built on Scripture — and you're on the inside of it.
 
 WHAT'S INCLUDED WITH YOUR PURCHASE:
 
-✓ Unlimited screen-locking modes
-✓ All verse packs (plus future packs at no extra cost)
-✓ Screen time tracking and daily reports
-✓ Family sharing across all devices
-✓ Lifetime updates for as long as FaithWall exists
+✓ FaithWall web room access today
+✓ Scripture unlock tasks and wall progress
+✓ Manual screen-time check-ins
+✓ Founding Family development updates
+✓ First access to iOS and Android releases
 
-Your download link will arrive via email as soon as FaithWall launches on the App Store and Google Play. We're putting the final polish on now, and Founding Family members like you will be the very first to get access.
+Open the FaithWall web room now:
+https://faithwall.deadhidden.org/app
 
-—
+It saves your progress on this device while the native iOS and Android apps are being built.
 
 —
 

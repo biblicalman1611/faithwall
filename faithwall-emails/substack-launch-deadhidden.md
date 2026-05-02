@@ -2,54 +2,47 @@
 
 ---
 
-## Subject Lines (A/B/C Test)
+## Subject Lines
 
-**A.** Your phone is a temple to distraction
-**B.** 96 times a day. That's how often you bow.
-**C.** They engineered your addiction. We built a wall.
+**A.** We built a wall for the scroll
+**B.** Insider first access: FaithWall is live
+**C.** Scripture before scrolling
 
 ---
 
 ## Email Body
 
-Your phone is a temple to distraction.
+I wanted you to hear this here first.
 
-Every scroll is a prayer to the algorithm. Every notification, a little bell calling you back to worship. Every "just checking" — a surrender. You think you're the user. Try leaving it in another room for an hour and tell me who owns whom.
+Christie and I have been building FaithWall for weeks through headaches, trial, broken pieces, late nights, and a lot of "why is this not working?" moments. Ha.
 
-Here's a number that should terrify any Christian: **96.** That's how many times the average person checks their phone per day. Ninety-six little pilgrimages to the glowing rectangle. Ninety-six moments where your attention was pulled from the real world — your kids, your spouse, the person sitting across from you — and offered up to a feed designed to keep you addicted.
+The first version is live now.
 
-We are the most distracted people in the history of the world. And we call ourselves followers of the One who said "Be still, and know that I am God."
+FaithWall is our Scripture-before-scrolling project. The web room works today: you choose a wall mode, pause before the scroll, read Scripture, complete a short reflection or prayer, and build visible progress one brick at a time.
 
-Still? We're anything but still. We're twitchy. Fragmented. Half-present. We read three verses in the morning and then let a trillion pixels wash over us until midnight. We wonder why we feel empty — why our kids seem distant, why our marriages feel thin, why prayer feels like talking into a void.
+I want to be straight with you because this is DeadHidden and I am not interested in selling smoke.
 
-Maybe the void is us. Maybe we filled the space where God wanted to meet us with endless, meaningless, algorithmic noise.
+The web room is real today. It saves your wall progress on your device, gives you Scripture unlock tasks, and lets you manually check in on screen time.
 
-**I built a wall.**
+The native iOS and Android app blocking is the next build. A browser cannot honestly block Instagram, TikTok, news, or any other native app on your phone. The mobile apps are the part that will do that right.
 
-Not a metaphor. A real one. FaithWall is a screen-locking app that puts Scripture between you and the scroll. Before you can open Instagram, TikTok, news, sports, whatever your drug of choice is — you get a verse. A short reflection. A moment to wake up and remember whose you are.
+Founding Family access is open first to this list:
 
-It's not another productivity hack. It's not "digital minimalism" dressed up in beige aesthetics. It's resistance. Counter-culture. A physical barrier that says: *Not my attention. Not my mind. These belong to Someone else.*
+- $29.99 individual
+- $39.99 household
+- One-time early-access purchase
+- Web room access now
+- First access as the native apps and household tools ship
 
-Here's what you get:
+If you have ever checked your Screen Time and felt that little punch in the gut, this is for you.
 
-- **Lock any app** behind Scripture — social media, news, games, whatever owns you right now
-- **Family sharing** — put the wall around your whole household, one account, every device
-- **Screen time tracking** — daily reports so you can see exactly how the fight is going
-- **All verse packs** — plus every new pack we release, forever, no extra charge
+If you have ever told your kids to get off screens while your own thumb was already reaching for the phone, this is for you.
 
-**$29.99 individual. $39.99 family. Lifetime. No subscription.**
+If you want Scripture to interrupt the scroll before the scroll gets another hour from you, come build the wall with us.
 
-Cheaper than the time you've already wasted this week. Cheaper than the therapy you'll eventually need if you keep letting your kids grow up watching you worship a screen.
+[**Get insider first access to FaithWall →**](https://faithwall.deadhidden.org)
 
-They built the distraction industrial complex to harvest your soul, one notification at a time.
-
-**We built a wall. Come inside it.**
-
-[**Get FaithWall now →**](https://faithwall.deadhidden.org)
-
-Reply to this if you want to talk. I read every email.
+Reply if you want to talk. I read these.
 
 Adam
 *deadhidden*
-
-P.S. — Still not sure? Go check your Screen Time right now. I'll wait. Look at today's number, then ask yourself: what did I trade for those hours? What was I *supposed* to be paying attention to while I was scrolling? That's what the wall protects. That's what FaithWall is for.

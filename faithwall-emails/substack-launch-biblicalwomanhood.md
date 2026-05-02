@@ -2,11 +2,11 @@
 
 ---
 
-## Subject Lines (A/B/C Test)
+## Subject Lines
 
 **A.** Mama, I see you reaching for that phone
-**B.** Less than one family dinner out — and this actually lasts
-**C.** The scroll that steals your homeschool day (and what finally stopped mine)
+**B.** Scripture before scrolling
+**C.** A wall for the homeschool day
 
 ---
 
@@ -14,37 +14,29 @@
 
 Mama, I see you.
 
-Reaching for your phone during math lessons. "Just checking the recipe real quick" that turns into twenty minutes. The homeschool day that was supposed to end at 2 PM but got stretched until dinner because the time just... disappeared.
+Reaching for your phone during math lessons. "Just checking something real quick" that becomes twenty minutes. The homeschool day that was supposed to feel peaceful, but somehow got swallowed by the little screen in your hand.
 
-I know the guilt. The feeling that you were *present* but not really there. The kids notice, don't they? They notice when your eyes are on a screen instead of on them. And then — the worst part — they learn it from us. They reach for their tablets the way we reach for our phones. Monkey see, monkey do.
+We know that feeling in our house too.
 
-We've tried screen time limits. We've tried app timers. We've tried "just putting the phone in another room" (that lasted about two days, didn't it?). The apps our kids use are engineered by billion-dollar companies to hijack attention. We're not failing — we're fighting an unfair fight with plastic tools.
+That is why Christie and I have been building FaithWall. Weeks of headaches, trial, stuck points, fixes, and honest prayer went into getting this first version live.
 
-**My husband built something that actually works.**
+The web room works today: choose a mode, pause before the scroll, read Scripture, complete a short prayer or reflection, and build a visible wall one brick at a time.
 
-It's called FaithWall. A screen-locking app that puts Scripture between you and the scroll. Not another timer your kids learn to bypass. Not another restriction that feels like a punishment. A real wall — built on God's Word — that makes you pause before you open the app that eats your time.
+And I want to be honest about what is next: native iOS and Android app blocking is still being built. The web room cannot control native apps from a browser. Founding Family members get the usable web room now and first access as the mobile apps and household tools ship.
 
-Here's what it does:
+Founding Family access:
 
-- **Locks any app** behind a beautiful Scripture card — Instagram, TikTok, news, whatever keeps pulling you back
-- **Family sharing** — protect every device in your home under one account, parents and kids
-- **Screen time tracking** — see exactly where the hours go, with gentle daily reports
-- **All verse packs included** — and every new pack we add, forever, at no extra cost
+- $29.99 individual
+- $39.99 household
+- One-time early-access purchase
+- Web room access today
+- First access as the native app and household tools ship
 
-And the best part? **No subscription. No monthly charge that sneaks up on your family budget.**
-
-$29.99 for individual lifetime access. $39.99 for the whole family. That's less than one family dinner out — and unlike the chicken nuggets, this actually lasts.
-
-Scripture before scrolling. That's the wall. And you can build it today in less time than it takes to fold a load of laundry.
+Scripture before scrolling. That is the wall.
 
 [**Build your family wall →**](https://faithwall.deadhidden.org)
 
-Reply to this email if you have questions — I read every one. (Yes, really!)
+Reply to this email if you have questions. I read every one.
 
-With love from one tired mama to another,
 Adam
 *biblicalwomanhood*
-
-P.S. — Download the free "10 Verses to Build Your Family Wall" printable while you wait. Put it on the fridge, the bathroom mirror, wherever your crew will see it. It's our gift to you, no purchase needed.
-
-[**Get your free printable →**](https://faithwall.deadhidden.org/faithwall-10-verses-printable.pdf)

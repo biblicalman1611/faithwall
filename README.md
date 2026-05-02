@@ -54,12 +54,10 @@ vercel --prod
 ```
 faithwall-export/
 ├── api/
-│   ├── welcome.js                     # Lead magnet email (Resend)
+│   ├── create-checkout-session.js     # Stripe checkout session
+│   ├── stripe-webhook.js              # Stripe purchase email webhook
 │   └── emails/
-│       ├── purchase-welcome.js        # Purchase confirmation email
-│       └── lead-magnet-welcome.js     # Lead magnet email template
-├── public/
-│   └── faithwall-10-verses-printable.pdf  # Free KJV devotional download
+│       └── purchase-welcome.js        # Purchase confirmation email
 ├── src/
 │   ├── components/
 │   │   ├── PricingSection.tsx         # 3-tier pricing with Stripe
@@ -68,18 +66,16 @@ faithwall-export/
 │   │   └── stripe.ts                  # LIVE Stripe keys
 │   ├── pages/
 │   │   ├── CancelPage.tsx             # Cancelled checkout
-│   │   ├── DemoApp.tsx                # Browser demo (internal name)
+│   │   ├── DemoApp.tsx                # FaithWall web room
 │   │   ├── SuccessPage.tsx            # Post-purchase
-│   │   └── ThanksPage.tsx             # Lead magnet thank you
 │   ├── App.tsx                        # Main app — all landing page sections
 │   ├── main.tsx                       # Entry point
 │   └── index.css                      # Custom styles + animations
-├── faithwall-emails/                  # 5 email templates for substack launch
+├── faithwall-emails/                  # Email templates for launch
 │   ├── substack-launch-biblicalman.md
 │   ├── substack-launch-biblicalwomanhood.md
 │   ├── substack-launch-deadhidden.md
-│   ├── purchase-welcome.js
-│   └── lead-magnet-welcome.js
+│   └── purchase-welcome.js
 ├── index.html
 ├── package.json
 ├── tsconfig.json
@@ -95,20 +91,22 @@ faithwall-export/
 
 | Variable | Value | Where |
 |----------|-------|-------|
-| `RESEND_API_KEY` | `re_iAbtYfPk_8xJWkrCEEmi5uwxGswh3QqPY` | Already set in `.env.local` — add to Vercel dashboard |
+| `RESEND_API_KEY` | Private Resend API key | Add to Vercel dashboard |
+| `STRIPE_SECRET_KEY` | Private Stripe secret key | Add to Vercel dashboard |
+| `STRIPE_WEBHOOK_SECRET` | Stripe webhook signing secret | Add after creating the webhook endpoint |
+| `FAITHWALL_APP_URL` | `https://faithwall.deadhidden.org` | Add to Vercel dashboard |
 
 ### Setting in Vercel:
 1. Vercel dashboard → Project → Settings → Environment Variables
-2. Add: `RESEND_API_KEY` = `re_iAbtYfPk_8xJWkrCEEmi5uwxGswh3QqPY`
+2. Add the private values above
 3. Save → Redeploy
 
 ### Already configured in the repo:
-- `.env.local` — has the Resend key for local development
-- `.env.example` — template showing the key format
+- `.env.example` — template showing the expected variable names
 - `.gitignore` — `.env.local` and `.env` are gitignored (key won't leak)
 
 ### Stripe keys:
-Already hardcoded in `src/config/stripe.ts` (publishable key only, safe for frontend). No backend env var needed.
+The frontend has the publishable key only, which is safe for browser use. Server checkout and webhooks use private Vercel environment variables.
 
 ---
 
@@ -116,16 +114,17 @@ Already hardcoded in `src/config/stripe.ts` (publishable key only, safe for fron
 
 - React 19 + TypeScript + Vite
 - Tailwind CSS + shadcn/ui
-- Stripe Checkout (client-only, no backend)
-- Resend email API (via Vercel serverless function)
+- Stripe Checkout + Payment Link fallback
+- Stripe webhook purchase emails
+- Resend email API via Vercel serverless function
 - 40+ shadcn/ui components pre-installed
 
 ---
 
-## No Beta, No Trial, No Third-Party Branding
+## No Beta, No Placeholder Branding
 
-Your wife was right — this is a **product launch**, not a beta. Zero references to:
-- "beta", "trial", "free trial", "Join the Beta"
+Your wife was right — this is a **product launch**, not a beta. Customer-facing copy now avoids old beta-language, third-party branding, and placeholder hooks:
+- old beta CTA language
 - "kimi", "formspree", "fridge magnet"
 - `faithwall.app` or `hello@` anywhere
 
@@ -133,7 +132,7 @@ All references point to:
 - **Domain:** `faithwall.deadhidden.org`
 - **Email:** `adam@deadhidden.org`
 - **Product name:** FaithWall
-- **Pricing:** $29.99 individual / $39.99 family (lifetime)
+- **Pricing:** $29.99 individual / $39.99 household (one-time Founding Family access)
 
 ---
 
@@ -147,22 +146,18 @@ faithwall.deadhidden.org
 Sales landing page
         ↓
 OPTION A: "Get FaithWall — $29.99" → Stripe → $$
-OPTION B: "Give a One-Time Gift" → Stripe gift link → support
-OPTION C: "Send Me the Printable" → Email → Resend → nurture
+OPTION B: "Choose Founding Family Access" → Stripe Checkout/payment link → $$
         ↓
-Purchase: Welcome email from adam@deadhidden.org
-Lead magnet: Printable PDF + soft pitch
-Gift: Personal thank-you from your family
+Purchase: Success page → FaithWall web room
+Purchase webhook: Welcome email from adam@deadhidden.org
+Buyer: Personal thank-you from your family
 ```
 
 ---
 
-## Stripe Gift Link
+## Support Section
 
-The "Support the Mission" section links to:
-`https://buy.stripe.com/9B614o1Jq4EIcgu3p5c3m09`
-
-This is your separate Stripe gift link for people who want to fund development.
+The "Support the Mission" section now points back to the confirmed Founding Family checkout choices instead of an unverified gift link.
 
 ---
 

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Check, Copy, Facebook, Mail } from 'lucide-react';
+import { BookOpen, Check, Copy, Facebook, Mail, Shield } from 'lucide-react';
 
 export default function SuccessPage() {
   const [copied, setCopied] = useState(false);
   const shareUrl = 'https://faithwall.deadhidden.org';
-  const shareText = 'I just joined FaithWall as a Founding Family member! Lock distracting apps, unlock with Scripture, build your family wall. Join me:';
+  const shareText = 'I just joined FaithWall as a Founding Family member! Scripture before scrolling, one wall at a time. Join me:';
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
@@ -42,22 +42,32 @@ export default function SuccessPage() {
           Welcome to the Wall, Founding Family!
         </h1>
         <p className="text-[#8C7B6B] mb-8">
-          Your payment was successful. Your Founding Family annual subscription is active.
+          Your payment was successful. Your Founding Family access is active.
         </p>
 
         {/* Next steps */}
         <div className="bg-white rounded-2xl shadow-sm border border-[#E8E0D4] p-6 mb-8 text-left">
           <h3 className="font-bold text-[#3D2B1F] mb-4">What happens next:</h3>
-          <p className="text-sm text-[#5C4D3C]">
-            You now have full access to FaithWall. Check your email for login instructions.
-          </p>
+          <div className="space-y-3 text-sm text-[#5C4D3C]">
+            <p>Your web room is ready now. It saves your wall progress on this device while the native iOS and Android apps are being built.</p>
+            <p>You will also receive Founding Family updates as the native app and household features ship.</p>
+          </div>
+          <div className="mt-5 grid grid-cols-1 gap-3">
+            <a
+              href="/app"
+              className="flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-[#C4453A] to-[#A63830] text-white rounded-xl text-sm font-bold hover:shadow-lg transition-all"
+            >
+              <Shield className="w-4 h-4" />
+              Open FaithWall Web Room
+            </a>
+          </div>
         </div>
 
         {/* Share section */}
         <div className="mb-8">
           <h3 className="font-bold text-[#3D2B1F] mb-3">Share FaithWall with friends</h3>
           <p className="text-sm text-[#8C7B6B] mb-4">
-            Know a mom who needs this? Spread the word 🧱
+            Know a family who needs this? Spread the word.
           </p>
           <div className="flex gap-3 justify-center">
             <button
@@ -90,6 +100,13 @@ export default function SuccessPage() {
             adam@deadhidden.org
           </a>
         </p>
+        <a
+          href="/"
+          className="mt-4 inline-flex items-center gap-2 text-xs text-[#8C7B6B] hover:text-[#C4453A]"
+        >
+          <BookOpen className="w-3 h-3" />
+          Back to FaithWall
+        </a>
       </div>
     </div>
   );
